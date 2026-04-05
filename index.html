@@ -1,0 +1,4306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHUDDH VAAYU • NEO AQI | PM SHRI KV Panna</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;500;700&family=Poppins:wght@300;400;600;800&family=Montserrat:wght@400;600;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en", autoDisplay: false },
+          "google_translate_element",
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+    <style>
+      :root {
+        --primary-black: #000000;
+        --dark-grey: #0a0a0a;
+        --medium-grey: #1a1a1a;
+        --light-grey: #2a2a2a;
+        --text-white: #ffffff;
+        --text-grey: #cccccc;
+        --accent-purple: #9d4edd;
+        --accent-purple-light: #c77dff;
+        --gradient-dark: linear-gradient(
+          135deg,
+          #000000 0%,
+          #0a0a0a 50%,
+          #1a1a1a 100%
+        );
+        --gradient-purple: linear-gradient(
+          135deg,
+          #6b21a8 0%,
+          #9d4edd 50%,
+          #c77dff 100%
+        );
+        --gradient-green: linear-gradient(135deg, #00ff88 0%, #00b06b 100%);
+        --gradient-red: linear-gradient(135deg, #ff6b6b 0%, #d32f2f 100%);
+        --gradient-yellow: linear-gradient(135deg, #ffd166 0%, #ffb300 100%);
+        --gradient-orange: linear-gradient(135deg, #ff914d 0%, #ff6b00 100%);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        cursor: none;
+      }
+      .skiptranslate iframe {
+        display: none !important;
+      }
+      body {
+        top: 0px !important;
+      }
+      #google_translate_element {
+        display: none;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--primary-black);
+        color: var(--text-white);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .cursor {
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        mix-blend-mode: screen;
+      }
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: #a970ff;
+        border-radius: 50%;
+        box-shadow:
+          0 0 20px #a970ff,
+          0 0 40px #4a00e0;
+        position: absolute;
+      }
+      .cursor-trail {
+        width: 30px;
+        height: 30px;
+        border: 2px solid rgba(169, 112, 255, 0.6);
+        border-radius: 50%;
+        position: absolute;
+        transition: transform 0.1s;
+        box-shadow: 0 0 30px #bf7fff;
+      }
+      #bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        opacity: 0.75;
+        pointer-events: none;
+      }
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-black);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+      .loading-logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 2rem;
+        background: var(--gradient-purple);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: pulse 1.5s infinite;
+        text-align: center;
+      }
+      .loading-bar {
+        width: min(300px, 80%);
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+      .loading-progress {
+        width: 0%;
+        height: 100%;
+        background: var(--gradient-purple);
+        border-radius: 2px;
+        transition: width 2s ease;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.03);
+        }
+      }
+      .modern-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+        z-index: 1000;
+        padding: 0.8rem 1.5rem;
+        transform: translateY(-100%);
+        animation: slideDown 0.8s ease 1.5s forwards;
+      }
+      @keyframes slideDown {
+        to {
+          transform: translateY(0);
+        }
+      }
+      .nav-container {
+        max-width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .nav-container::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        font-weight: 800;
+        color: var(--text-white);
+        text-decoration: none;
+        z-index: 1002;
+        margin-right: 1.5rem;
+        flex-shrink: 0;
+      }
+      .nav-logo-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: floatLogo 2.5s ease-in-out infinite;
+        overflow: hidden;
+        background: var(--gradient-purple);
+      }
+      .nav-logo-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      @keyframes floatLogo {
+        0%,
+        100% {
+          transform: translateY(0) rotateX(0);
+        }
+        50% {
+          transform: translateY(-8px) rotateX(8deg);
+        }
+      }
+      .mobile-menu-btn {
+        display: none;
+        background: rgba(157, 78, 221, 0.15);
+        border: 1px solid rgba(157, 78, 221, 0.4);
+        color: var(--text-white);
+        font-size: 1.3rem;
+        cursor: pointer;
+        z-index: 1002;
+        border-radius: 10px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        flex-shrink: 0;
+      }
+      .mobile-menu-btn:hover {
+        background: rgba(157, 78, 221, 0.3);
+      }
+      .nav-links {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+      }
+      .nav-link {
+        color: var(--text-grey);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.6rem 1rem;
+        border-radius: 50px;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-purple);
+        transition: 0.4s;
+        z-index: -1;
+      }
+      .nav-link:hover {
+        color: var(--text-white);
+        transform: translateY(-2px);
+      }
+      .nav-link:hover::before {
+        left: 0;
+      }
+      .nav-link.active {
+        background: var(--gradient-purple);
+        color: var(--text-white);
+        box-shadow: 0 5px 20px rgba(157, 78, 221, 0.3);
+      }
+      .nav-connect-btn {
+        background: var(--gradient-purple);
+        color: var(--text-white);
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.95rem;
+        white-space: nowrap;
+      }
+      .nav-connect-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(157, 78, 221, 0.4);
+      }
+      .nav-connect-btn.connected {
+        background: var(--gradient-green);
+      }
+      .scroll-velocity-section {
+        position: relative;
+        padding: 3rem 0;
+        background: linear-gradient(
+          90deg,
+          rgba(157, 78, 221, 0.2) 0%,
+          rgba(0, 212, 255, 0.2) 25%,
+          rgba(0, 255, 136, 0.2) 50%,
+          rgba(255, 209, 102, 0.2) 75%,
+          rgba(157, 78, 221, 0.2) 100%
+        );
+        overflow: hidden;
+        margin-top: 5.5rem;
+        border-top: 1px solid rgba(157, 78, 221, 0.4);
+        border-bottom: 1px solid rgba(157, 78, 221, 0.4);
+        backdrop-filter: blur(10px);
+      }
+      .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: auto;
+        padding: 1rem 0;
+      }
+      .marquee-content {
+        display: flex;
+        animation: marquee 30s linear infinite;
+        white-space: nowrap;
+        will-change: transform;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .scroller {
+        display: inline-block;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(2rem, 5vw + 1rem, 4.5rem);
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          #9d4edd 25%,
+          #00d4ff 50%,
+          #00ff88 75%,
+          #ffd166 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 200% auto;
+        animation: gradientFlow 2.5s linear infinite;
+        white-space: nowrap;
+        padding: 0 2rem;
+        line-height: 1.4;
+        min-width: max-content;
+      }
+      @keyframes gradientFlow {
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      .lang-selector {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(157, 78, 221, 0.5);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        font-family: "Poppins";
+        margin-left: 0.5rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .notranslate {
+        translate: no;
+      }
+      .hero-section {
+        min-height: 100vh;
+        padding: 8rem 2rem 4rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+          radial-gradient(
+            circle at 30% 50%,
+            rgba(157, 78, 221, 0.15) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(0, 212, 255, 0.1) 0%,
+            transparent 70%
+          );
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        overflow: hidden;
+      }
+      .hero-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        transform-style: preserve-3d;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        transform-style: preserve-3d;
+      }
+      .hero-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(2.2rem, 5vw + 1rem, 4rem);
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #9d4edd 50%,
+          #c77dff 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        line-height: 1.2;
+        text-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
+        transform: translateZ(20px);
+      }
+      .hero-description {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: var(--text-grey);
+        margin-bottom: 2.5rem;
+        line-height: 1.8;
+        max-width: 600px;
+        transform: translateZ(10px);
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 1.2rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+        transform: translateZ(15px);
+      }
+      .hero-btn {
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        flex: 1 1 auto;
+        text-align: center;
+      }
+      .hero-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.6s;
+      }
+      .hero-btn:hover::before {
+        left: 100%;
+      }
+      .hero-btn-primary {
+        background: var(--gradient-purple);
+        color: var(--text-white);
+        box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
+      }
+      .hero-btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-white);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .hero-btn:hover {
+        transform: translateY(-3px) translateZ(10px);
+        box-shadow: 0 15px 40px rgba(157, 78, 221, 0.4);
+      }
+      .project-highlights {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+        transform: translateZ(5px);
+      }
+      .highlight-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 25px;
+        border: 1px solid rgba(157, 78, 221, 0.2);
+        font-size: 0.9rem;
+        color: var(--text-grey);
+        transition: var(--transition);
+      }
+      .highlight-item:hover {
+        background: rgba(157, 78, 221, 0.1);
+        border-color: rgba(157, 78, 221, 0.4);
+        transform: translateY(-2px);
+      }
+      .sensor-display-3d {
+        perspective: 1200px;
+        transform-style: preserve-3d;
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .display-container {
+        background: rgba(26, 26, 26, 0.9);
+        backdrop-filter: blur(25px);
+        border-radius: 25px;
+        padding: 2.5rem;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        box-shadow:
+          0 25px 70px rgba(0, 0, 0, 0.6),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transform: rotateX(5deg) rotateY(-5deg) translateZ(40px);
+        transition:
+          transform 0.5s ease,
+          box-shadow 0.5s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .display-container:hover {
+        transform: rotateX(3deg) rotateY(-3deg) translateZ(60px);
+        box-shadow:
+          0 35px 100px rgba(157, 78, 221, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+      .display-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid rgba(157, 78, 221, 0.3);
+      }
+      .display-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(1.4rem, 3vw + 0.5rem, 1.8rem);
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #ffffff, #9d4edd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .display-subtitle {
+        color: var(--text-grey);
+        font-size: 0.95rem;
+      }
+      .aqi-display-fixed {
+        position: relative;
+        width: 280px;
+        height: 280px;
+        margin: 0 auto 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .aqi-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 3px solid rgba(157, 78, 221, 0.3);
+        box-shadow:
+          inset 0 0 40px rgba(157, 78, 221, 0.1),
+          0 0 50px rgba(157, 78, 221, 0.2);
+        animation: ringPulse 3s ease-in-out infinite;
+        z-index: 1;
+      }
+      @keyframes ringPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.03);
+          opacity: 1;
+        }
+      }
+      .aqi-center {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: var(--gradient-purple);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        box-shadow:
+          0 20px 50px rgba(0, 0, 0, 0.7),
+          inset 0 10px 30px rgba(255, 255, 255, 0.1);
+        transform-style: preserve-3d;
+        transition: all 0.5s ease;
+        overflow: hidden;
+      }
+      .aqi-center.good {
+        background: var(--gradient-green);
+      }
+      .aqi-center.moderate {
+        background: var(--gradient-yellow);
+      }
+      .aqi-center.unhealthy-sensitive {
+        background: var(--gradient-orange);
+      }
+      .aqi-center.unhealthy {
+        background: var(--gradient-red);
+      }
+      .aqi-center.very-unhealthy {
+        background: var(--gradient-purple);
+      }
+      .aqi-center.hazardous {
+        background: linear-gradient(135deg, #4a00e0 0%, #2d0080 100%);
+      }
+      .aqi-value {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(3rem, 8vw, 4.5rem);
+        font-weight: 900;
+        color: var(--text-white);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+      .aqi-status {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1rem, 3vw, 1.4rem);
+        font-weight: 700;
+        color: var(--text-white);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+      .sensor-grid-fixed {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+      }
+      .sensor-item-fixed {
+        background: rgba(42, 42, 42, 0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        border: 1px solid rgba(157, 78, 221, 0.2);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform-style: preserve-3d;
+      }
+      .sensor-item-fixed:hover {
+        transform: translateY(-5px) translateZ(10px);
+        border-color: rgba(157, 78, 221, 0.5);
+        box-shadow: 0 15px 40px rgba(157, 78, 221, 0.2);
+      }
+      .sensor-value-fixed {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
+        font-weight: 800;
+        margin-bottom: 0.3rem;
+        background: linear-gradient(135deg, #ffffff, #9d4edd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-align: center;
+      }
+      .sensor-label-fixed {
+        font-size: 0.9rem;
+        color: var(--text-grey);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+      .sync-indicator-fixed {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1.2rem;
+        background: rgba(157, 78, 221, 0.1);
+        border-radius: 15px;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+        flex-wrap: wrap;
+        text-align: center;
+      }
+      .sync-indicator-fixed:hover {
+        background: rgba(157, 78, 221, 0.2);
+        border-color: rgba(157, 78, 221, 0.5);
+      }
+      .sync-icon-fixed {
+        color: #9d4edd;
+        font-size: 1.3rem;
+        animation: spin 2s linear infinite;
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .sync-text-fixed {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-white);
+      }
+      .sync-subtext-fixed {
+        font-size: 0.85rem;
+        color: var(--text-grey);
+      }
+
+      /* ── RAW DEBUG BOX ── */
+      #rawDebugBox {
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(157, 78, 221, 0.4);
+        border-radius: 10px;
+        padding: 0.7rem 1rem;
+        margin-top: 0.8rem;
+        font-family: "Orbitron", monospace;
+        font-size: 0.72rem;
+        color: #c77dff;
+        word-break: break-all;
+        line-height: 1.5;
+        display: none;
+      }
+      #rawDebugBox.show {
+        display: block;
+      }
+
+      .section-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 8rem 2rem;
+        position: relative;
+        transform-style: preserve-3d;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        transform-style: preserve-3d;
+      }
+      .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #ffffff, #9d4edd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transform: translateZ(20px);
+      }
+      .section-subtitle {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: var(--text-grey);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        transform: translateZ(10px);
+      }
+      .dashboard-grid-3d {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        perspective: 1000px;
+      }
+      .dashboard-card-3d {
+        background: rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        transition: var(--transition);
+        transform-style: preserve-3d;
+        transform: translateZ(0);
+        position: relative;
+        overflow: hidden;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .dashboard-card-3d::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-purple);
+        transition: var(--transition);
+      }
+      .dashboard-card-3d:hover {
+        transform: translateZ(30px) translateY(-10px);
+        border-color: rgba(157, 78, 221, 0.6);
+        box-shadow: 0 25px 60px rgba(157, 78, 221, 0.25);
+      }
+      .dashboard-card-3d:hover::before {
+        height: 6px;
+      }
+      .card-header-3d {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+      }
+      .card-icon-3d {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        background: var(--gradient-purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: var(--text-white);
+        box-shadow: 0 8px 25px rgba(157, 78, 221, 0.3);
+        transition: var(--transition);
+        transform-style: preserve-3d;
+        flex-shrink: 0;
+      }
+      .dashboard-card-3d:hover .card-icon-3d {
+        transform: rotateY(180deg) scale(1.1);
+        box-shadow: 0 12px 35px rgba(157, 78, 221, 0.4);
+      }
+      .card-value-3d {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 3.2rem);
+        font-weight: 900;
+        margin: 1rem 0;
+        background: linear-gradient(135deg, #ffffff, #9d4edd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        word-wrap: break-word;
+      }
+      .card-label-3d {
+        font-size: 0.95rem;
+        color: var(--text-grey);
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        font-weight: 600;
+      }
+      .card-status {
+        font-size: 0.9rem;
+        color: var(--text-grey);
+        margin-top: 0.5rem;
+      }
+      .aqi-scale-section {
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(157, 78, 221, 0.1) 0%,
+          transparent 70%
+        );
+        position: relative;
+        cursor: pointer;
+      }
+      .aqi-grid-3d {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        perspective: 1000px;
+      }
+      .aqi-level-3d {
+        padding: 2.5rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+        transition: var(--transition);
+        transform-style: preserve-3d;
+        transform: translateZ(0);
+        position: relative;
+        overflow: hidden;
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid transparent;
+      }
+      .aqi-level-3d::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          transparent 50%,
+          rgba(0, 0, 0, 0.1) 100%
+        );
+        opacity: 0;
+        transition: var(--transition);
+      }
+      .aqi-level-3d:hover {
+        transform: translateZ(40px) translateY(-15px);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+        z-index: 10;
+      }
+      .aqi-level-3d:hover::before {
+        opacity: 1;
+      }
+      .aqi-range-3d {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(1.8rem, 5vw, 2.2rem);
+        font-weight: 900;
+        margin-bottom: 0.8rem;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        transition: var(--transition);
+        color: white;
+      }
+      .aqi-level-3d:hover .aqi-range-3d {
+        transform: scale(1.2);
+      }
+      .aqi-label-3d {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.1rem, 3vw, 1.4rem);
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+        letter-spacing: 1px;
+        color: white;
+      }
+      .aqi-description-3d {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-top: 1rem;
+        line-height: 1.5;
+        max-width: 200px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .aqi-good {
+        background: var(--gradient-green);
+        border-left: 8px solid #00ff88;
+        box-shadow: -5px 5px 20px rgba(0, 255, 136, 0.3);
+        animation: pulseGood 3s infinite;
+      }
+      @keyframes pulseGood {
+        0% {
+          box-shadow: -5px 5px 20px rgba(0, 255, 136, 0.3);
+        }
+        50% {
+          box-shadow: -5px 5px 30px rgba(0, 255, 136, 0.7);
+        }
+      }
+      .aqi-moderate {
+        background: var(--gradient-yellow);
+        border-top: 8px solid #ffd166;
+        border-bottom: 8px solid #ffb300;
+        transform: rotate(0.5deg);
+      }
+      .aqi-unhealthy-sensitive {
+        background: var(--gradient-orange);
+        border-radius: 50% 20% / 20% 50%;
+        border-right: 8px solid #ff6b00;
+        transform: skewX(2deg);
+      }
+      .aqi-unhealthy {
+        background: var(--gradient-red);
+        border: 4px dashed #ff6b6b;
+        animation: borderDance 4s infinite linear;
+      }
+      @keyframes borderDance {
+        0% {
+          border-color: #ff6b6b;
+        }
+        33% {
+          border-color: #ffb300;
+        }
+        66% {
+          border-color: #9d4edd;
+        }
+      }
+      .aqi-very-unhealthy {
+        background: var(--gradient-purple);
+        border-bottom: 8px solid #c77dff;
+        border-right: 8px solid #9d4edd;
+        transform: rotate(-0.5deg);
+      }
+      .aqi-hazardous {
+        background: linear-gradient(135deg, #4a00e0 0%, #2d0080 100%);
+        border: 6px double #ff00ff;
+        box-shadow: 0 0 30px #ff00ff;
+        animation: glowHazard 2s infinite alternate;
+      }
+      @keyframes glowHazard {
+        from {
+          box-shadow: 0 0 20px #ff00ff;
+        }
+        to {
+          box-shadow:
+            0 0 40px #ff00ff,
+            0 0 60px #8a2be2;
+        }
+      }
+      .charts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        gap: 3rem;
+      }
+      .chart-container-3d {
+        background: rgba(26, 26, 26, 0.9);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        transition: var(--transition);
+        transform-style: preserve-3d;
+        min-height: 400px;
+        height: auto;
+        transform: translateZ(0);
+        width: 100%;
+      }
+      .chart-container-3d:hover {
+        transform: translateZ(20px);
+        border-color: rgba(157, 78, 221, 0.6);
+        box-shadow: 0 20px 60px rgba(157, 78, 221, 0.2);
+      }
+      .chart-header-3d {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .chart-title-3d {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, #ffffff, #9d4edd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .time-range {
+        font-size: 0.9rem;
+        color: var(--text-grey);
+        background: rgba(157, 78, 221, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+      }
+      .chart-canvas-container-3d {
+        height: 300px;
+        position: relative;
+        width: 100%;
+      }
+      .hardware-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .hardware-item {
+        background: rgba(42, 42, 42, 0.8);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        transition: var(--transition);
+        transform-style: preserve-3d;
+      }
+      .hardware-item:hover {
+        transform: translateY(-10px) translateZ(20px);
+        border-color: rgba(157, 78, 221, 0.6);
+        box-shadow: 0 20px 50px rgba(157, 78, 221, 0.2);
+      }
+      .hardware-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--gradient-purple);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+      .quiz-section {
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(157, 78, 221, 0.15) 0%,
+          transparent 70%
+        );
+      }
+      .quiz-container {
+        background: rgba(26, 26, 26, 0.9);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 3rem;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        margin-top: 2rem;
+      }
+      .quiz-question {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: 2rem;
+        color: var(--text-white);
+      }
+      .quiz-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .quiz-option {
+        background: rgba(42, 42, 42, 0.8);
+        padding: 1.5rem;
+        border-radius: 10px;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .quiz-option:hover {
+        background: rgba(157, 78, 221, 0.2);
+        transform: translateY(-5px);
+      }
+      .quiz-option.selected {
+        background: var(--gradient-purple);
+        border-color: rgba(157, 78, 221, 0.6);
+      }
+      .quiz-remark {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        color: #ffd166;
+      }
+      .retest-btn {
+        background: var(--gradient-purple);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 1rem;
+        display: inline-block;
+      }
+      .retest-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #9d4edd;
+      }
+      .info-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+      }
+      .info-card {
+        background: rgba(26, 26, 26, 0.9);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        transition: var(--transition);
+        transform-style: preserve-3d;
+      }
+      .info-card:hover {
+        transform: translateY(-10px) translateZ(20px);
+        border-color: rgba(157, 78, 221, 0.6);
+        box-shadow: 0 25px 60px rgba(157, 78, 221, 0.2);
+      }
+      footer {
+        background: rgba(0, 0, 0, 0.95);
+        padding: 6rem 2rem 3rem;
+        border-top: 1px solid rgba(157, 78, 221, 0.3);
+        margin-top: 4rem;
+      }
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .footer-logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 800;
+        color: var(--text-white);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .footer-description {
+        color: var(--text-grey);
+        line-height: 1.6;
+      }
+      .creator-credit {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1rem, 3vw, 1.4rem);
+        font-weight: 800;
+        margin: 3rem 0;
+        text-align: center;
+        color: var(--text-white);
+        background: rgba(157, 78, 221, 0.1);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+      }
+      .school-info {
+        text-align: center;
+        margin: 3rem 0;
+        padding: 2.5rem;
+        background: rgba(157, 78, 221, 0.1);
+        border-radius: 20px;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+      }
+      .school-name {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        color: var(--text-white);
+      }
+      .footer-bottom {
+        text-align: center;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-grey);
+        font-size: 0.9rem;
+      }
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.88);
+        backdrop-filter: blur(16px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        padding: 1rem;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
+      }
+      .modal-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-overlay.open .modal-content-3d {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      .modal-content-3d {
+        background: rgba(26, 26, 26, 0.97);
+        backdrop-filter: blur(30px);
+        border-radius: 25px;
+        padding: 3rem;
+        max-width: 500px;
+        width: 100%;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+        transform-style: preserve-3d;
+        max-height: 90vh;
+        overflow-y: auto;
+        transform: translateY(30px) scale(0.96);
+        opacity: 0;
+        transition:
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.35s ease;
+      }
+      .modal-header-3d {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .modal-title-3d {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff, #9d4edd);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .modal-subtitle {
+        color: var(--text-grey);
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      .modal-body {
+        margin: 2rem 0;
+      }
+      .port-list {
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        border-radius: 10px;
+        padding: 1rem;
+      }
+      .port-item {
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        background: rgba(42, 42, 42, 0.8);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 1px solid transparent;
+      }
+      .port-item:hover {
+        background: rgba(157, 78, 221, 0.2);
+        border-color: rgba(157, 78, 221, 0.5);
+      }
+      .port-item.selected {
+        background: var(--gradient-purple);
+        border-color: rgba(157, 78, 221, 0.8);
+      }
+      .modal-actions-3d {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+      .modal-btn-3d {
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        min-width: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        transform-style: preserve-3d;
+        flex: 1 1 auto;
+      }
+      .modal-btn-primary {
+        background: var(--gradient-purple);
+        color: var(--text-white);
+      }
+      .modal-btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-white);
+      }
+      .modal-btn-3d:hover {
+        transform: translateY(-3px) translateZ(10px);
+        box-shadow: 0 15px 40px rgba(157, 78, 221, 0.3);
+      }
+      .real-data-indicator {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--gradient-green);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        z-index: 100;
+        box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+      }
+      .real-data-indicator.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .notification {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        z-index: 1000;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: translateX(150%);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 90vw;
+      }
+      .notification.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .notification.success {
+        background: rgba(0, 255, 136, 0.2);
+        color: #00ff88;
+        border-color: rgba(0, 255, 136, 0.3);
+      }
+      .notification.error {
+        background: rgba(255, 107, 107, 0.2);
+        color: #ff6b6b;
+        border-color: rgba(255, 107, 107, 0.3);
+      }
+      .notification.info {
+        background: rgba(157, 78, 221, 0.2);
+        color: #9d4edd;
+        border-color: rgba(157, 78, 221, 0.3);
+      }
+      .light-warning {
+        display: inline-block;
+        background: rgba(255, 209, 102, 0.2);
+        border-radius: 20px;
+        padding: 0.2rem 0.6rem;
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #ffd166;
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .city-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+      .city-card,
+      .control-group,
+      .ai-chat,
+      .personal-card {
+        background: rgba(26, 26, 26, 0.85);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(157, 78, 221, 0.3);
+        transition: var(--transition);
+        padding: 1.5rem;
+      }
+      .city-card:hover,
+      .control-group:hover,
+      .personal-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(157, 78, 221, 0.6);
+        box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
+      }
+      .zone-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1rem;
+      }
+      .zone-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: 0.2s;
+        color: white;
+      }
+      .zone-btn.residential {
+        background: linear-gradient(135deg, #4caf50, #8bc34a);
+      }
+      .zone-btn.industrial {
+        background: linear-gradient(135deg, #ff5722, #ff9800);
+      }
+      .zone-btn.green {
+        background: linear-gradient(135deg, #009688, #4db6ac);
+      }
+      .zone-btn.traffic {
+        background: linear-gradient(135deg, #9c27b0, #e91e63);
+      }
+      .zone-btn:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+      .simulation-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .control-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+      input[type="range"] {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--gradient-purple);
+      }
+      .control-value {
+        font-family: "Orbitron", monospace;
+        margin-top: 0.5rem;
+        font-weight: 800;
+        color: var(--accent-purple-light);
+      }
+      .simulation-visual {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-end;
+        gap: 1rem;
+        height: 260px;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 20px;
+        margin: 1.5rem 0;
+      }
+      .bar {
+        width: 60px;
+        border-radius: 12px 12px 0 0;
+        transition: height 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 8px;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 1px 2px black;
+      }
+      .bar.co2 {
+        background: linear-gradient(0deg, #ff6b6b, #ee5a5a);
+      }
+      .bar.pm25 {
+        background: linear-gradient(0deg, #feca57, #ff9f43);
+      }
+      .bar.no2 {
+        background: linear-gradient(0deg, #48dbfb, #0abde3);
+      }
+      .bar.so2 {
+        background: linear-gradient(0deg, #ff9ff3, #f368e0);
+      }
+      .bar.o3 {
+        background: linear-gradient(0deg, #1dd1a1, #10ac84);
+      }
+      .bar-label {
+        font-size: 0.7rem;
+        margin-top: 6px;
+      }
+      .ai-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .ai-avatar {
+        width: 60px;
+        height: 60px;
+        background: var(--gradient-purple);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+      }
+      .voice-toggle {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 40px;
+        color: white;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        cursor: pointer;
+      }
+      .ai-chat {
+        height: 320px;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .message {
+        padding: 0.8rem 1.2rem;
+        border-radius: 20px;
+        max-width: 85%;
+        animation: fadeSlide 0.2s ease;
+      }
+      .message.ai {
+        background: var(--gradient-purple);
+        align-self: flex-start;
+      }
+      .message.user {
+        background: rgba(255, 255, 255, 0.15);
+        align-self: flex-end;
+      }
+      .ai-input-container {
+        display: flex;
+        gap: 0.8rem;
+      }
+      .ai-input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(157, 78, 221, 0.4);
+        border-radius: 40px;
+        padding: 0.8rem 1.2rem;
+        color: white;
+      }
+      .ai-send {
+        background: var(--gradient-purple);
+        border: none;
+        padding: 0 1.5rem;
+        border-radius: 40px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .quiz-btn-small {
+        background: linear-gradient(135deg, #f368e0, #ff6b6b);
+        border: none;
+        padding: 0.7rem;
+        width: 100%;
+        margin-top: 1rem;
+        border-radius: 40px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .personal-dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+      }
+      .personal-card .input-group {
+        margin-bottom: 1rem;
+      }
+      .personal-card input,
+      .personal-card select {
+        width: 100%;
+        padding: 0.7rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(157, 78, 221, 0.4);
+        border-radius: 14px;
+        color: white;
+      }
+      .submit-btn {
+        background: var(--gradient-purple);
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .prediction-card {
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 16px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .prediction-value {
+        font-family: "Orbitron";
+        font-size: 2rem;
+        font-weight: 800;
+      }
+      .warning-box {
+        padding: 1rem;
+        border-radius: 16px;
+        border-left: 6px solid;
+        margin-top: 1rem;
+        background: rgba(0, 0, 0, 0.3);
+      }
+      .warning-box.good {
+        border-color: #4caf50;
+      }
+      .warning-box.moderate {
+        border-color: #ffeb3b;
+      }
+      .warning-box.unhealthy {
+        border-color: #f44336;
+      }
+      @keyframes fadeSlide {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .hero-section {
+          padding: 7rem 2rem 3rem;
+        }
+        .hero-container {
+          grid-template-columns: 1.15fr 1fr;
+          gap: 2rem;
+        }
+        .hero-title {
+          font-size: clamp(1.9rem, 3vw, 2.8rem);
+        }
+        .sensor-display-3d {
+          max-width: 400px;
+        }
+        .display-container {
+          padding: 1.8rem;
+        }
+        .aqi-display-fixed {
+          width: 230px;
+          height: 230px;
+        }
+        .aqi-center {
+          width: 165px;
+          height: 165px;
+        }
+        .sensor-grid-fixed {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.8rem;
+        }
+        .sensor-item-fixed {
+          padding: 1rem;
+          min-height: 90px;
+        }
+        .sensor-value-fixed {
+          font-size: 1.5rem;
+        }
+        .section-container {
+          padding: 5.5rem 2rem;
+        }
+        .dashboard-grid-3d {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.8rem;
+        }
+        .dashboard-card-3d {
+          padding: 2rem;
+          min-height: 240px;
+        }
+        .aqi-grid-3d {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .hardware-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+        .info-cards {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+        .city-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+        .personal-dashboard-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+        }
+        .quiz-options {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+        .modal-content-3d {
+          max-width: 520px;
+          padding: 2.5rem;
+        }
+      }
+      @media (max-width: 1280px) {
+        .modern-nav {
+          padding: 0.75rem 1.2rem;
+        }
+        .mobile-menu-btn {
+          display: flex;
+        }
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: -320px;
+          width: 300px;
+          height: 100vh;
+          background: rgba(8, 8, 8, 0.98);
+          backdrop-filter: blur(30px);
+          border-left: 1px solid rgba(157, 78, 221, 0.35);
+          flex-direction: column;
+          padding: 5rem 2rem 2rem;
+          gap: 0.4rem;
+          align-items: stretch;
+          overflow-y: auto;
+          transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 1001;
+          white-space: normal;
+        }
+        .nav-links.active-menu {
+          right: 0;
+        }
+        .nav-links.active-menu::before {
+          content: "";
+          position: fixed;
+          inset: 0;
+          right: 300px;
+          background: rgba(0, 0, 0, 0.6);
+          z-index: -1;
+        }
+        .nav-link {
+          font-size: 1rem;
+          padding: 0.85rem 1.2rem;
+          border-radius: 12px;
+          border: 1px solid transparent;
+          width: 100%;
+          display: block;
+        }
+        .nav-link:hover,
+        .nav-link.active {
+          border-color: rgba(157, 78, 221, 0.4);
+          background: rgba(157, 78, 221, 0.15);
+        }
+        .nav-link.active {
+          background: var(--gradient-purple);
+          border-color: transparent;
+        }
+        .nav-connect-btn {
+          width: 100%;
+          justify-content: center;
+          margin-top: 0.5rem;
+          padding: 0.85rem 1.2rem;
+          border-radius: 12px;
+          font-size: 1rem;
+        }
+        .lang-selector {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 0.5rem;
+          padding: 0.75rem 1rem;
+          border-radius: 12px;
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 6rem 1.5rem 3rem;
+        }
+        .section-container {
+          padding: 5rem 1.5rem;
+        }
+        .aqi-display-fixed {
+          width: 220px;
+          height: 220px;
+        }
+        .aqi-center {
+          width: 160px;
+          height: 160px;
+        }
+        .sensor-grid-fixed {
+          grid-template-columns: 1fr;
+        }
+        .modal-content-3d {
+          padding: 2rem;
+          width: 95%;
+        }
+        .real-data-indicator {
+          bottom: 10px;
+          right: 10px;
+          font-size: 0.8rem;
+          padding: 0.6rem 1rem;
+        }
+        .notification {
+          top: 80px;
+          right: 10px;
+          width: calc(100vw - 20px);
+          font-size: 0.9rem;
+        }
+        .quiz-options {
+          grid-template-columns: 1fr;
+        }
+        .simulation-visual {
+          height: 200px;
+        }
+        .bar {
+          width: 40px;
+        }
+      }
+      @media (max-width: 480px) {
+        .display-container,
+        .dashboard-card-3d,
+        .info-card,
+        .hardware-item,
+        .quiz-container {
+          padding: 1.5rem;
+        }
+        .footer-grid {
+          gap: 2rem;
+        }
+        .school-info {
+          padding: 1.5rem;
+        }
+        .chart-header-3d {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .hero-buttons,
+        .hero-btn {
+          flex-direction: column;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="google_translate_element"></div>
+    <div class="cursor">
+      <div class="cursor-dot" id="cursorDot"></div>
+      <div class="cursor-trail" id="cursorTrail"></div>
+    </div>
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-logo"><i class="fas fa-wind"></i> SHUDDH VAAYU</div>
+      <div class="loading-bar"><div class="loading-progress"></div></div>
+      <p>Initializing Smart AQI Monitor...</p>
+    </div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="real-data-indicator" id="realDataIndicator">
+      <i class="fas fa-microchip"></i><span>Connected to Arduino</span>
+    </div>
+    <div id="notificationContainer"></div>
+
+    <nav class="modern-nav">
+      <div class="nav-container">
+        <a href="#home" class="nav-logo">
+          <div class="nav-logo-icon">
+            <i class="fas fa-wind" style="font-size: 1.5rem; color: white"></i>
+          </div>
+          <span>SHUDDH VAAYU</span>
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#dashboard" class="nav-link">Dashboard</a>
+          <a href="#aqiScale" class="nav-link">AQI Scale</a>
+          <a href="#charts" class="nav-link">Analytics</a>
+          <a href="#hardware" class="nav-link">Hardware</a>
+          <a href="#quiz" class="nav-link">Quiz</a>
+          <a href="#citySection" class="nav-link">Cities</a>
+          <a href="#simulationGame" class="nav-link">Simulation</a>
+          <a href="#spectraAi" class="nav-link">Spectra AI</a>
+          <a href="#personalDashboard" class="nav-link">AQI Dashboard</a>
+          <button class="nav-connect-btn" id="connectBtn">
+            <i class="fas fa-plug"></i> Connect Arduino
+          </button>
+          <select
+            id="langSelect"
+            class="lang-selector notranslate"
+            onchange="changeLanguage(this.value)"
+          >
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="bn">বাংলা</option>
+            <option value="te">తెలుగు</option>
+            <option value="ta">தமிழ்</option>
+            <option value="mr">मराठी</option>
+            <option value="gu">ગુજરાતી</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="ml">മലയാളം</option>
+            <option value="bnd">बुंदेलखंडी</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+
+    <section class="scroll-velocity-section">
+      <div class="marquee-container">
+        <div class="marquee-content">
+          <span class="scroller"
+            >🌿 CLEAN AIR FOR ALL • 🌍 SUSTAINABLE FUTURE • 💡 SMART IOT
+            TECHNOLOGY • 🔬 REAL-TIME MONITORING • 🏫 PM SHRI KV PANNA •
+          </span>
+          <span class="scroller"
+            >🌿 CLEAN AIR FOR ALL • 🌍 SUSTAINABLE FUTURE • 💡 SMART IOT
+            TECHNOLOGY • 🔬 REAL-TIME MONITORING • 🏫 PM SHRI KV PANNA •
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">Smart Air Quality Monitoring System</h1>
+          <p class="hero-description">
+            Advanced IoT-based environmental monitoring using Arduino UNO with
+            MQ135, DHT11, and LDR sensors. Real-time air quality tracking with
+            3D visualization for healthier living spaces at PM SHRI KV Panna.
+          </p>
+          <div class="hero-buttons">
+            <button class="hero-btn hero-btn-primary" id="exploreBtn">
+              <i class="fas fa-chart-line"></i> Explore Dashboard
+            </button>
+            <button class="hero-btn hero-btn-secondary" id="learnMoreBtn">
+              <i class="fas fa-book"></i> Learn More
+            </button>
+          </div>
+          <div class="project-highlights">
+            <div class="highlight-item">
+              <i class="fas fa-microchip"></i><span>Arduino UNO R3</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-wind"></i><span>MQ135 Gas Sensor</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-thermometer-half"></i><span>DHT11 Sensor</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-lightbulb"></i><span>LDR Sensor</span>
+            </div>
+          </div>
+        </div>
+        <div class="sensor-display-3d">
+          <div class="display-container">
+            <div class="display-header">
+              <h3 class="display-title">LIVE SENSOR DATA STREAM</h3>
+              <p class="display-subtitle">
+                Real-time readings from connected hardware
+              </p>
+            </div>
+            <div class="aqi-display-fixed">
+              <div class="aqi-ring"></div>
+              <div class="aqi-center good" id="aqiCenter">
+                <div class="aqi-value" id="mainAqiValue">--</div>
+                <div class="aqi-status" id="mainAqiStatus">LOADING</div>
+              </div>
+            </div>
+            <div class="sensor-grid-fixed">
+              <div class="sensor-item-fixed">
+                <div class="sensor-value-fixed" id="tempValue">--</div>
+                <div class="sensor-label-fixed">Temperature</div>
+              </div>
+              <div class="sensor-item-fixed">
+                <div class="sensor-value-fixed" id="humValue">--</div>
+                <div class="sensor-label-fixed">Humidity</div>
+              </div>
+              <div class="sensor-item-fixed">
+                <div class="sensor-value-fixed" id="lightValue">--</div>
+                <div class="sensor-label-fixed">Light</div>
+              </div>
+            </div>
+            <div class="sync-indicator-fixed" id="syncIndicator">
+              <div class="sync-icon-fixed"><i class="fas fa-sync-alt"></i></div>
+              <div class="sync-text-fixed">
+                <span id="syncMainText">Demo Mode — Arduino NOT Connected</span>
+                <div class="sync-subtext-fixed" id="syncSubText">
+                  Click "Connect Arduino" for real data
+                </div>
+              </div>
+            </div>
+            <!-- RAW DEBUG: shows last serial line received — hides in demo -->
+            <div id="rawDebugBox">
+              📡 Last received: <span id="rawDebugLine">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Live Sensor Dashboard</h2>
+        <p class="section-subtitle">
+          Real-time environmental data from Arduino hardware sensors with 3D
+          visualization
+        </p>
+      </div>
+      <div class="dashboard-grid-3d">
+        <div class="dashboard-card-3d">
+          <div class="card-header-3d">
+            <div>
+              <div class="card-label-3d">Air Quality Index</div>
+              <div class="card-value-3d" id="dashboardAqi">--</div>
+              <div class="card-status">
+                Status:
+                <span
+                  id="dashboardAqiStatus"
+                  style="color: #00ff88; font-weight: 700"
+                  >—</span
+                >
+              </div>
+            </div>
+            <div class="card-icon-3d"><i class="fas fa-smog"></i></div>
+          </div>
+          <p class="card-details">
+            <i class="fas fa-sensor"></i> MQ135 Gas Sensor • Pin A0 • 0-500
+            Scale
+          </p>
+        </div>
+        <div class="dashboard-card-3d">
+          <div class="card-header-3d">
+            <div>
+              <div class="card-label-3d">Temperature</div>
+              <div class="card-value-3d" id="dashboardTemp">--</div>
+              <div class="card-status">
+                Range: -40°C to 80°C • Accuracy ±2°C
+              </div>
+            </div>
+            <div class="card-icon-3d">
+              <i class="fas fa-thermometer-half"></i>
+            </div>
+          </div>
+          <p class="card-details">
+            <i class="fas fa-sensor"></i> DHT11 Sensor • Pin D2 • Digital Output
+          </p>
+        </div>
+        <div class="dashboard-card-3d">
+          <div class="card-header-3d">
+            <div>
+              <div class="card-label-3d">Humidity</div>
+              <div class="card-value-3d" id="dashboardHum">--</div>
+              <div class="card-status">Relative Humidity • 20-90% RH</div>
+            </div>
+            <div class="card-icon-3d"><i class="fas fa-tint"></i></div>
+          </div>
+          <p class="card-details">
+            <i class="fas fa-sensor"></i> DHT11 Sensor • Pin D2 • ±5% Accuracy
+          </p>
+        </div>
+        <div class="dashboard-card-3d">
+          <div class="card-header-3d">
+            <div>
+              <div class="card-label-3d">Light Intensity</div>
+              <div class="card-value-3d" id="dashboardLight">--</div>
+              <div class="card-status">Ambient Light • 0-100% Scale</div>
+            </div>
+            <div class="card-icon-3d"><i class="fas fa-lightbulb"></i></div>
+          </div>
+          <p class="card-details">
+            <i class="fas fa-sensor"></i> LDR Sensor • Pin A1 • 0-1023 RAW
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="aqiScale" class="section-container aqi-scale-section">
+      <div class="section-header">
+        <h2 class="section-title">Air Quality Index Scale</h2>
+        <p class="section-subtitle">
+          Understanding AQI levels and their health implications
+        </p>
+      </div>
+      <div class="aqi-grid-3d">
+        <div class="aqi-level-3d aqi-good">
+          <div class="aqi-range-3d">0-50</div>
+          <div class="aqi-label-3d">GOOD</div>
+          <p class="aqi-description-3d">
+            Air quality is satisfactory and poses no risk
+          </p>
+        </div>
+        <div class="aqi-level-3d aqi-moderate">
+          <div class="aqi-range-3d">51-100</div>
+          <div class="aqi-label-3d">MODERATE</div>
+          <p class="aqi-description-3d">
+            Acceptable air quality for most individuals
+          </p>
+        </div>
+        <div class="aqi-level-3d aqi-unhealthy-sensitive">
+          <div class="aqi-range-3d">101-150</div>
+          <div class="aqi-label-3d">UNHEALTHY FOR SENSITIVE</div>
+          <p class="aqi-description-3d">
+            Children, elderly, and people with respiratory issues
+          </p>
+        </div>
+        <div class="aqi-level-3d aqi-unhealthy">
+          <div class="aqi-range-3d">151-200</div>
+          <div class="aqi-label-3d">UNHEALTHY</div>
+          <p class="aqi-description-3d">
+            Everyone may experience health effects
+          </p>
+        </div>
+        <div class="aqi-level-3d aqi-very-unhealthy">
+          <div class="aqi-range-3d">201-300</div>
+          <div class="aqi-label-3d">VERY UNHEALTHY</div>
+          <p class="aqi-description-3d">Health alert: Serious health effects</p>
+        </div>
+        <div class="aqi-level-3d aqi-hazardous">
+          <div class="aqi-range-3d">301-500</div>
+          <div class="aqi-label-3d">HAZARDOUS</div>
+          <p class="aqi-description-3d">
+            Emergency conditions affecting everyone
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="charts" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Real-Time Analytics</h2>
+        <p class="section-subtitle">
+          Interactive data visualization from live sensor readings
+        </p>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-container-3d">
+          <div class="chart-header-3d">
+            <h3 class="chart-title-3d">Air Quality Index Trends</h3>
+            <span class="time-range">Last 60 Readings</span>
+          </div>
+          <div class="chart-canvas-container-3d">
+            <canvas id="aqiChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-container-3d">
+          <div class="chart-header-3d">
+            <h3 class="chart-title-3d">Temperature, Humidity & Light</h3>
+            <span class="time-range">Last 60 Readings</span>
+          </div>
+          <div class="chart-canvas-container-3d">
+            <canvas id="envChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hardware" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Hardware Components</h2>
+        <p class="section-subtitle">
+          IoT devices and sensors used in this project
+        </p>
+      </div>
+      <div class="hardware-grid">
+        <div class="hardware-item">
+          <div class="hardware-icon"><i class="fas fa-microchip"></i></div>
+          <h3>Arduino UNO R3</h3>
+          <p>
+            Main microcontroller board with ATmega328P processor for data
+            processing and communication.
+          </p>
+        </div>
+        <div class="hardware-item">
+          <div class="hardware-icon"><i class="fas fa-wind"></i></div>
+          <h3>MQ135 Gas Sensor</h3>
+          <p>
+            Detects NH3, NOx, alcohol, benzene, smoke, CO2 with high sensitivity
+            and fast response.
+          </p>
+        </div>
+        <div class="hardware-item">
+          <div class="hardware-icon">
+            <i class="fas fa-thermometer-half"></i>
+          </div>
+          <h3>DHT11 Sensor</h3>
+          <p>
+            Digital temperature and humidity sensor with calibrated digital
+            signal output.
+          </p>
+        </div>
+        <div class="hardware-item">
+          <div class="hardware-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>LDR Sensor</h3>
+          <p>
+            Light Dependent Resistor for measuring ambient light intensity and
+            brightness levels.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="section-container quiz-section">
+      <div class="section-header">
+        <h2 class="section-title">Air Quality Quiz</h2>
+        <p class="section-subtitle">
+          Test your knowledge about air pollution and monitoring
+        </p>
+      </div>
+      <div class="quiz-container">
+        <div class="quiz-question" id="quizQuestion">Loading...</div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+          "
+        >
+          <div id="quizScore" style="font-size: 1.3rem; color: #9d4edd">
+            Score: 0/7
+          </div>
+          <button id="nextQuestionBtn" class="hero-btn hero-btn-primary">
+            <i class="fas fa-forward"></i> Next Question
+          </button>
+        </div>
+        <div id="quizResult" style="margin-top: 1rem; font-weight: 600"></div>
+        <div id="quizRemark" class="quiz-remark"></div>
+        <div
+          id="retestContainer"
+          style="text-align: center; margin-top: 1.5rem"
+        ></div>
+      </div>
+    </section>
+
+    <section id="citySection" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Select Your City</h2>
+        <p class="section-subtitle">
+          Explore pollution levels by zone in major cities
+        </p>
+      </div>
+      <div class="city-grid" id="cityGrid"></div>
+    </section>
+
+    <section id="simulationGame" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">🎮 Pollution Simulation Game</h2>
+        <p class="section-subtitle">
+          Adjust sliders to see real-time pollution impact
+        </p>
+      </div>
+      <div
+        class="simulation-container"
+        style="
+          background: rgba(26, 26, 26, 0.7);
+          backdrop-filter: blur(12px);
+          border-radius: 28px;
+          padding: 2rem;
+        "
+      >
+        <div class="simulation-controls">
+          <div class="control-group">
+            <label>🌳 Trees</label
+            ><input
+              type="range"
+              id="treesSlider"
+              min="0"
+              max="100"
+              value="50"
+            />
+            <div class="control-value" id="treesValue">50</div>
+          </div>
+          <div class="control-group">
+            <label>🏭 Factories</label
+            ><input
+              type="range"
+              id="factoriesSlider"
+              min="0"
+              max="100"
+              value="30"
+            />
+            <div class="control-value" id="factoriesValue">30</div>
+          </div>
+          <div class="control-group">
+            <label>🚗 Vehicles</label
+            ><input
+              type="range"
+              id="vehiclesSlider"
+              min="0"
+              max="100"
+              value="40"
+            />
+            <div class="control-value" id="vehiclesValue">40</div>
+          </div>
+          <div class="control-group">
+            <label>💨 Wind Speed</label
+            ><input type="range" id="windSlider" min="0" max="100" value="50" />
+            <div class="control-value" id="windValue">50</div>
+          </div>
+        </div>
+        <div class="simulation-visual">
+          <div class="bar co2" id="co2Bar" style="height: 50%">
+            <span>CO₂</span>
+            <div class="bar-label" id="co2Label">150</div>
+          </div>
+          <div class="bar pm25" id="pm25Bar" style="height: 40%">
+            <span>PM2.5</span>
+            <div class="bar-label" id="pm25Label">80</div>
+          </div>
+          <div class="bar no2" id="no2Bar" style="height: 35%">
+            <span>NO₂</span>
+            <div class="bar-label" id="no2Label">60</div>
+          </div>
+          <div class="bar so2" id="so2Bar" style="height: 30%">
+            <span>SO₂</span>
+            <div class="bar-label" id="so2Label">45</div>
+          </div>
+          <div class="bar o3" id="o3Bar" style="height: 25%">
+            <span>O₃</span>
+            <div class="bar-label" id="o3Label">35</div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 1rem">
+          <h3>Current AQI</h3>
+          <div
+            id="simulationAQI"
+            style="font-family: Orbitron; font-size: 3rem; color: #4caf50"
+          >
+            85
+          </div>
+          <p id="aqiStatusText">Good - Air quality is satisfactory</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="spectraAi" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">🤖 Spectra AI</h2>
+        <p class="section-subtitle">
+          Your pollution expert – chat, learn & test yourself
+        </p>
+      </div>
+      <div
+        class="ai-container"
+        style="
+          background: rgba(26, 26, 26, 0.85);
+          border-radius: 28px;
+          padding: 1.8rem;
+        "
+      >
+        <div class="ai-header">
+          <div class="ai-avatar">🤖</div>
+          <h3>Pollution Expert</h3>
+          <button class="voice-toggle" id="voiceToggle">
+            <i class="fas fa-volume-up"></i><span>Voice</span>
+          </button>
+        </div>
+        <div class="ai-chat" id="aiChat">
+          <div class="message ai">
+            Hello! I'm Spectra AI, your pollution expert. Ask me about AQI,
+            pollutants, or health effects. Try the quiz!
+          </div>
+        </div>
+        <div class="ai-input-container">
+          <input
+            type="text"
+            class="ai-input"
+            id="aiInput"
+            placeholder="Ask about pollution..."
+          />
+          <button class="ai-send" id="aiSendBtn">Send</button>
+        </div>
+        <button class="quiz-btn-small" id="openSpectraQuizBtn">
+          🎯 Start Pollution Quiz
+        </button>
+      </div>
+    </section>
+
+    <section id="personalDashboard" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">📊 Personal AQI Dashboard</h2>
+        <p class="section-subtitle">
+          Get predictions & health advice based on your input
+        </p>
+      </div>
+      <div class="personal-dashboard-grid">
+        <div class="personal-card">
+          <h3>Enter AQI Data</h3>
+          <div class="input-group">
+            <label>Current AQI (0-500)</label
+            ><input
+              type="number"
+              id="userAQI"
+              min="0"
+              max="500"
+              placeholder="e.g., 120"
+            />
+          </div>
+          <div class="input-group">
+            <label>Time of Measurement</label
+            ><input type="datetime-local" id="measureTime" />
+          </div>
+          <div class="input-group">
+            <label>Location (optional)</label
+            ><input type="text" id="userLocation" placeholder="Your area" />
+          </div>
+          <button class="submit-btn" id="submitAQIBtn">Submit & Predict</button>
+        </div>
+        <div class="personal-card">
+          <h3>AQI Predictions</h3>
+          <div class="prediction-card">
+            <p>After 1 Hour</p>
+            <div class="prediction-value" id="pred1h">--</div>
+          </div>
+          <div class="prediction-card">
+            <p>After 1 Day</p>
+            <div class="prediction-value" id="pred1d">--</div>
+          </div>
+          <div class="prediction-card">
+            <p>After 1 Week</p>
+            <div class="prediction-value" id="pred1w">--</div>
+          </div>
+        </div>
+        <div class="personal-card" style="grid-column: span 2">
+          <h3>Health Suggestions & Warnings</h3>
+          <div id="healthSuggestions">
+            <div class="warning-box good">
+              Enter your AQI data to receive personalized health suggestions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div
+      id="spectraQuizModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(20px);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: #0a0a0a;
+          border-radius: 32px;
+          max-width: 700px;
+          width: 90%;
+          max-height: 85vh;
+          overflow-y: auto;
+          padding: 2rem;
+          border: 1px solid #9d4edd;
+        "
+      >
+        <div class="quiz-progress" id="spectraQuizProgress">
+          Question 1 of 15
+        </div>
+        <div class="quiz-question" id="spectraQuizQuestion"></div>
+        <div class="quiz-options" id="spectraQuizOptions"></div>
+        <div
+          class="quiz-nav"
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+          "
+        >
+          <button class="quiz-prev" id="spectraPrevBtn">Previous</button>
+          <button class="quiz-next" id="spectraNextBtn">Next</button>
+        </div>
+        <button
+          class="quiz-btn-small"
+          style="margin-top: 1rem"
+          id="closeSpectraQuizBtn"
+        >
+          Close Quiz
+        </button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <i class="fas fa-wind"></i> SHUDDH VAAYU
+            </div>
+            <p class="footer-description">
+              A cutting-edge IoT project demonstrating real-time environmental
+              monitoring and data visualization for smarter, healthier
+              communities at PM SHRI KV Panna.
+            </p>
+          </div>
+        </div>
+        <div class="creator-credit">
+          <i class="fas fa-brain"></i> MADE WITH PASSION BY PARTH VEER DUBEY
+        </div>
+        <div class="school-info">
+          <div class="school-name">
+            <i class="fas fa-school"></i> PM SHRI Kendriya Vidyalaya Panna
+          </div>
+          <div class="school-project">
+            Smart Air Quality Monitoring System Project
+          </div>
+          <div style="margin-top: 1rem; color: var(--text-grey)">
+            <i class="fas fa-map-marker-alt"></i> Panna, Madhya Pradesh, India
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            <i class="fas fa-copyright"></i> 2026 SHUDDH VAAYU Project. All
+            rights reserved. <span style="color: #9d4edd">|</span>
+            <i class="fas fa-microchip"></i> Arduino UNO IoT Project
+            <span style="color: #9d4edd">|</span>
+            <i class="fas fa-heart" style="color: #9d4edd"></i> Made with
+            Innovation & Excellence
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal-overlay" id="connectionModal">
+      <div class="modal-content-3d">
+        <div class="modal-header-3d">
+          <h2 class="modal-title-3d">Connect Arduino Device</h2>
+          <p class="modal-subtitle">
+            Select your Arduino from available serial ports
+          </p>
+        </div>
+        <div class="modal-body">
+          <div
+            style="
+              background: rgba(157, 78, 221, 0.12);
+              border: 1px solid rgba(157, 78, 221, 0.3);
+              border-radius: 14px;
+              padding: 1.2rem;
+              margin-bottom: 1.5rem;
+              font-size: 0.9rem;
+              color: var(--text-grey);
+              line-height: 1.7;
+            "
+          >
+            <b style="color: #c77dff">⚡ Quick Steps:</b><br />
+            1. Connect Arduino via USB cable<br />
+            2. <b style="color: #fff">Close Arduino IDE Serial Monitor</b> if
+            open<br />
+            3. Click <b style="color: #00ff88">"Connect Device"</b> → select COM
+            port → click Allow<br />
+            4. Or pick from already-permitted ports in the list
+          </div>
+          <div
+            style="
+              text-align: center;
+              margin-bottom: 1.5rem;
+              display: flex;
+              gap: 1rem;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <button
+              id="connectDeviceBtn"
+              class="hero-btn hero-btn-primary"
+              style="min-width: 180px"
+            >
+              <i class="fas fa-plug"></i> Connect Device
+            </button>
+            <button id="refreshPortsBtn" class="hero-btn hero-btn-secondary">
+              <i class="fas fa-sync-alt"></i> Refresh List
+            </button>
+          </div>
+          <div
+            style="
+              color: var(--text-grey);
+              font-size: 0.85rem;
+              text-align: center;
+              margin-bottom: 0.8rem;
+            "
+          >
+            Previously permitted ports:
+          </div>
+          <div class="port-list" id="portList"></div>
+        </div>
+        <div class="modal-actions-3d" style="justify-content: flex-end">
+          <button class="modal-btn-3d modal-btn-secondary" id="cancelModalBtn">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // ─── Language ───────────────────────────────────────────────────
+        window.changeLanguage = function (v) {
+          var g = v === "bnd" ? "hi" : v;
+          var s = document.querySelector(".goog-te-combo");
+          if (s) {
+            s.value = g;
+            s.dispatchEvent(new Event("change"));
+          } else setTimeout(() => changeLanguage(v), 500);
+        };
+
+        // ─── Nav hamburger ───────────────────────────────────────────────
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navLinks = document.querySelector(".nav-links");
+        function closeNavMenu() {
+          navLinks.classList.remove("active-menu");
+          mobileMenuBtn.querySelector("i").className = "fas fa-bars";
+        }
+        mobileMenuBtn?.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const open = navLinks.classList.toggle("active-menu");
+          mobileMenuBtn.querySelector("i").className = open
+            ? "fas fa-times"
+            : "fas fa-bars";
+        });
+        document.querySelectorAll(".nav-link").forEach((l) =>
+          l.addEventListener("click", () => {
+            if (window.innerWidth <= 1280) closeNavMenu();
+          }),
+        );
+        document.addEventListener("click", (e) => {
+          if (
+            window.innerWidth <= 1280 &&
+            navLinks.classList.contains("active-menu") &&
+            !navLinks.contains(e.target) &&
+            e.target !== mobileMenuBtn &&
+            !mobileMenuBtn.contains(e.target)
+          )
+            closeNavMenu();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeNavMenu();
+            closeConnectionModal();
+          }
+        });
+
+        // ─── Three.js background ─────────────────────────────────────────
+        const bgCanvas = document.getElementById("bg-canvas");
+        if (bgCanvas) {
+          const scene = new THREE.Scene();
+          scene.background = new THREE.Color(0x0a0c10);
+          const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000,
+          );
+          const renderer = new THREE.WebGLRenderer({
+            canvas: bgCanvas,
+            alpha: false,
+            antialias: true,
+          });
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.setPixelRatio(window.devicePixelRatio);
+          const pg = new THREE.BufferGeometry(),
+            pc = 2000,
+            pa = new Float32Array(pc * 3);
+          for (let i = 0; i < pc * 3; i += 3) {
+            pa[i] = (Math.random() - 0.5) * 30;
+            pa[i + 1] = (Math.random() - 0.5) * 30;
+            pa[i + 2] = (Math.random() - 0.5) * 30;
+          }
+          pg.setAttribute("position", new THREE.BufferAttribute(pa, 3));
+          const pm = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0x7f5fff,
+            transparent: true,
+            opacity: 0.5,
+            blending: THREE.AdditiveBlending,
+          });
+          const particles = new THREE.Points(pg, pm);
+          scene.add(particles);
+          const tg = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+          const tm = new THREE.MeshStandardMaterial({
+            color: 0xbf7fff,
+            emissive: 0x3300aa,
+            wireframe: true,
+          });
+          const torus = new THREE.Mesh(tg, tm);
+          scene.add(torus);
+          scene.add(new THREE.PointLight(0x7700ff, 1, 20));
+          scene.add(new THREE.AmbientLight(0x404060));
+          camera.position.set(1, 2, 8);
+          (function animBg() {
+            requestAnimationFrame(animBg);
+            torus.rotation.x += 0.008;
+            torus.rotation.y += 0.015;
+            particles.rotation.y += 0.0003;
+            renderer.render(scene, camera);
+          })();
+          window.addEventListener("resize", () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+          });
+        }
+
+        // ─── Custom cursor ───────────────────────────────────────────────
+        const dot = document.getElementById("cursorDot"),
+          trail = document.getElementById("cursorTrail");
+        let mx = 0,
+          my = 0,
+          tx = 0,
+          ty = 0;
+        document.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          if (dot) dot.style.transform = `translate(${mx - 4}px,${my - 4}px)`;
+        });
+        (function smooth() {
+          tx += (mx - tx) * 0.15;
+          ty += (my - ty) * 0.15;
+          if (trail)
+            trail.style.transform = `translate(${tx - 15}px,${ty - 15}px)`;
+          requestAnimationFrame(smooth);
+        })();
+
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 80,
+          easing: "ease-out-cubic",
+        });
+
+        // ─── Global state ────────────────────────────────────────────────
+        let sensorData = {
+          aqi: 0,
+          temperature: 0,
+          humidity: 0,
+          light: 0,
+          connected: false,
+          isDemoMode: true,
+          port: null,
+          reader: null,
+          selectedPort: null,
+        };
+        let demoInterval, aqiChart, envChart;
+        let chartHistory = {
+          timestamps: [],
+          aqi: [],
+          temperature: [],
+          humidity: [],
+          light: [],
+        };
+        let chartInitialized = false;
+
+        // ─── Loading screen ──────────────────────────────────────────────
+        const loadingScreen = document.getElementById("loadingScreen");
+        const loadingBar = document.querySelector(".loading-progress");
+        let prog = 0;
+        const loadTimer = setInterval(() => {
+          prog += Math.random() * 20 + 10;
+          if (prog >= 100) {
+            prog = 100;
+            clearInterval(loadTimer);
+            setTimeout(() => {
+              loadingScreen.style.opacity = "0";
+              setTimeout(() => (loadingScreen.style.display = "none"), 400);
+            }, 300);
+          }
+          loadingBar.style.width = prog + "%";
+        }, 100);
+
+        // ─── AQI status helper ───────────────────────────────────────────
+        function getAqiInfo(aqi) {
+          if (aqi <= 50)
+            return { status: "GOOD", color: "#00FF88", cls: "good" };
+          if (aqi <= 100)
+            return { status: "MODERATE", color: "#FFD166", cls: "moderate" };
+          if (aqi <= 150)
+            return {
+              status: "UNHEALTHY SENSITIVE",
+              color: "#FF914D",
+              cls: "unhealthy-sensitive",
+            };
+          if (aqi <= 200)
+            return { status: "UNHEALTHY", color: "#FF6B6B", cls: "unhealthy" };
+          if (aqi <= 300)
+            return {
+              status: "VERY UNHEALTHY",
+              color: "#9D4EDD",
+              cls: "very-unhealthy",
+            };
+          return { status: "HAZARDOUS", color: "#4A00E0", cls: "hazardous" };
+        }
+
+        // ─── Update all UI elements ──────────────────────────────────────
+        function updateDashboard(d) {
+          const info = getAqiInfo(d.aqi);
+
+          // Hero AQI circle
+          document.getElementById("mainAqiValue").innerText = d.aqi;
+          document.getElementById("mainAqiStatus").innerText = info.status;
+          const ac = document.getElementById("aqiCenter");
+          ac.className = "aqi-center " + info.cls;
+
+          // Hero sensor tiles
+          document.getElementById("tempValue").innerText = d.temperature + "°C";
+          document.getElementById("humValue").innerText = d.humidity + "%";
+          document.getElementById("lightValue").innerText = d.light + "%";
+
+          // Dashboard cards
+          document.getElementById("dashboardAqi").innerText = d.aqi;
+          document.getElementById("dashboardAqiStatus").innerText = info.status;
+          document.getElementById("dashboardAqiStatus").style.color =
+            info.color;
+          document.getElementById("dashboardTemp").innerText =
+            d.temperature + "°C";
+          document.getElementById("dashboardHum").innerText = d.humidity + "%";
+          document.getElementById("dashboardLight").innerText = d.light + "%";
+
+          // Chart history
+          const now = new Date();
+          let h = now.getHours(),
+            m = now.getMinutes().toString().padStart(2, "0"),
+            s = now.getSeconds().toString().padStart(2, "0");
+          const ap = h >= 12 ? "PM" : "AM";
+          h = h % 12 || 12;
+          chartHistory.timestamps.push(`${h}:${m}:${s} ${ap}`);
+          chartHistory.aqi.push(d.aqi);
+          chartHistory.temperature.push(d.temperature);
+          chartHistory.humidity.push(d.humidity);
+          chartHistory.light.push(d.light);
+          if (chartHistory.timestamps.length > 60) {
+            chartHistory.timestamps.shift();
+            chartHistory.aqi.shift();
+            chartHistory.temperature.shift();
+            chartHistory.humidity.shift();
+            chartHistory.light.shift();
+          }
+          if (aqiChart) aqiChart.update("none");
+          if (envChart) envChart.update("none");
+        }
+
+        // ─── Demo mode ───────────────────────────────────────────────────
+        function startDemoMode() {
+          if (demoInterval) clearInterval(demoInterval);
+          // Give initial values immediately so dashboard doesn't stay blank
+          const initData = {
+            aqi: 72,
+            temperature: 26.0,
+            humidity: 58,
+            light: 45,
+          };
+          sensorData = Object.assign(sensorData, initData);
+          updateDashboard(initData);
+
+          demoInterval = setInterval(() => {
+            if (sensorData.connected) return;
+            const now = new Date();
+            const hr = now.getHours(),
+              mn = now.getMinutes();
+            const baseAQI = 70;
+            const aqi = Math.max(
+              30,
+              Math.min(
+                250,
+                Math.round(
+                  baseAQI +
+                    Math.sin(((hr + mn / 60) * Math.PI) / 12) * 30 +
+                    (Math.random() - 0.5) * 15,
+                ),
+              ),
+            );
+            const temp = parseFloat(
+              (
+                24 +
+                Math.sin(((hr + mn / 60) * Math.PI) / 12) * 5 +
+                (Math.random() - 0.5) * 1.5
+              ).toFixed(1),
+            );
+            const hum = Math.max(
+              30,
+              Math.min(85, Math.round(58 + (Math.random() - 0.5) * 10)),
+            );
+            let light =
+              hr >= 6 && hr <= 18
+                ? Math.round(
+                    50 +
+                      Math.sin(((hr - 12) * Math.PI) / 12) * 30 +
+                      Math.random() * 20,
+                  )
+                : Math.round(Math.random() * 10);
+            const d = { aqi, temperature: temp, humidity: hum, light };
+            Object.assign(sensorData, d);
+            updateDashboard(d);
+          }, 2000);
+        }
+
+        // ─── Connection UI ───────────────────────────────────────────────
+        function updateConnectionUI() {
+          const syncIcon = document.querySelector(".sync-icon-fixed i");
+          const syncMain = document.getElementById("syncMainText");
+          const syncSub = document.getElementById("syncSubText");
+          const syncWrapper = document.querySelector(".sync-text-fixed");
+          const connectBtn = document.getElementById("connectBtn");
+          const indicator = document.getElementById("realDataIndicator");
+          const debugBox = document.getElementById("rawDebugBox");
+          if (!connectBtn) return;
+          if (sensorData.connected) {
+            if (syncIcon) {
+              syncIcon.style.color = "#00FF88";
+              syncIcon.style.animationDuration = "0.8s";
+            }
+            if (syncMain)
+              syncMain.textContent = "🟢 LIVE DATA — Arduino Connected";
+            if (syncSub)
+              syncSub.textContent = "Receiving real-time sensor data";
+            if (syncWrapper) syncWrapper.style.color = "#00FF88";
+            connectBtn.innerHTML =
+              '<i class="fas fa-plug-circle-check"></i> Connected';
+            connectBtn.classList.add("connected");
+            if (indicator) indicator.classList.add("show");
+            if (debugBox) debugBox.classList.add("show");
+          } else {
+            if (syncIcon) {
+              syncIcon.style.color = "#9D4EDD";
+              syncIcon.style.animationDuration = "2s";
+            }
+            if (syncMain)
+              syncMain.textContent = "Demo Mode — Arduino NOT Connected";
+            if (syncSub)
+              syncSub.textContent = 'Click "Connect Arduino" for real data';
+            if (syncWrapper) syncWrapper.style.color = "#FFFFFF";
+            connectBtn.innerHTML =
+              '<i class="fas fa-plug"></i> Connect Arduino';
+            connectBtn.classList.remove("connected");
+            if (indicator) indicator.classList.remove("show");
+            if (debugBox) debugBox.classList.remove("show");
+          }
+        }
+
+        // ─── SERIAL PARSER — handles all common Arduino output formats ───
+        //
+        //  Format A (JSON with AQI already computed):
+        //    {"aqi":85,"temp":28.5,"hum":62,"light":480}
+        //
+        //  Format B (JSON with raw MQ135 value as "aq"):
+        //    {"aq":320,"status":"MODERATE","temp":28.5,"hum":62,"light":480}
+        //
+        //  Format C (JSON with raw value as "gas" or "mq"):
+        //    {"gas":320,"temp":28.5,"hum":62,"light":480}
+        //
+        //  Format D (CSV — no headers):
+        //    85,28.5,62,480
+        //
+        //  Format E (labeled CSV):
+        //    AQI:85,T:28.5,H:62,L:480
+        //    aqi=85 temp=28.5 hum=62 light=480
+        //    AQI=85,Temp=28.5,Hum=62,Light=480
+        //
+        //  The function returns { aqi, temperature, humidity, light } or null.
+
+        function rawToAQI(raw) {
+          // MQ135 raw analog (0-1023) → AQI (0-500)
+          raw = parseInt(raw) || 0;
+          if (raw <= 0) return 0;
+          if (raw < 150) return Math.round((raw / 150) * 50); // 0-50  (Good)
+          if (raw < 250) return Math.round(50 + ((raw - 150) / 100) * 50); // 50-100 (Moderate)
+          if (raw < 400) return Math.round(100 + ((raw - 250) / 150) * 100); // 100-200 (Sensitive-Unhealthy)
+          if (raw < 600) return Math.round(200 + ((raw - 400) / 200) * 100); // 200-300
+          return Math.min(500, Math.round(300 + ((raw - 600) / 423) * 200)); // 300-500
+        }
+
+        function safeTemp(v) {
+          const n = parseFloat(v);
+          return isNaN(n) || n < -40 || n > 85
+            ? sensorData.temperature
+            : parseFloat(n.toFixed(1));
+        }
+        function safeHum(v) {
+          const n = parseFloat(v);
+          return isNaN(n) || n < 0 || n > 100
+            ? sensorData.humidity
+            : Math.round(n);
+        }
+        function safeLight(v) {
+          const n = parseFloat(v);
+          return isNaN(n) || n < 0
+            ? sensorData.light
+            : n > 100
+              ? Math.round((n / 1023) * 100)
+              : Math.round(n);
+        }
+
+        function parseArduinoLine(line) {
+          if (!line || line.trim().length < 3) return null;
+          const raw = line.trim();
+
+          // ── Format A & B & C: JSON ──────────────────────────────────
+          const js = raw.indexOf("{"),
+            je = raw.lastIndexOf("}");
+          if (js !== -1 && je !== -1) {
+            try {
+              const obj = JSON.parse(raw.slice(js, je + 1));
+              if (obj.error) {
+                showNotification("DHT11 Error! Check wiring.", "error");
+                return null;
+              }
+
+              let aqi;
+              if (obj.aqi !== undefined)
+                aqi = parseInt(obj.aqi); // already AQI
+              else if (obj.aq !== undefined)
+                aqi = rawToAQI(obj.aq); // raw analog
+              else if (obj.gas !== undefined)
+                aqi = rawToAQI(obj.gas); // raw analog
+              else if (obj.mq !== undefined)
+                aqi = rawToAQI(obj.mq); // raw analog
+              else if (obj.airq !== undefined)
+                aqi = rawToAQI(obj.airq); // raw analog
+              else return null;
+
+              return {
+                aqi: Math.max(0, Math.min(500, aqi)),
+                temperature: safeTemp(obj.temp ?? obj.temperature ?? obj.t),
+                humidity: safeHum(obj.hum ?? obj.humidity ?? obj.h),
+                light: safeLight(obj.light ?? obj.ldr ?? obj.l),
+              };
+            } catch (_) {
+              /* fall through to other parsers */
+            }
+          }
+
+          // ── Format E: labeled key=value or key:value ─────────────────
+          const lv = raw.replace(/\s+/g, " ").toLowerCase();
+          function extractVal(keys, str) {
+            for (const k of keys) {
+              const rx = new RegExp(`(?:^|[,\\s])${k}[=:]\\s*([\\d.]+)`, "i");
+              const m = str.match(rx);
+              if (m) return m[1];
+            }
+            return null;
+          }
+          const aqiStr = extractVal(
+            ["aqi", "airquality", "air_quality", "aq"],
+            lv,
+          );
+          const gasStr = extractVal(["gas", "mq135", "mq", "raw"], lv); // raw analog
+          const tempStr = extractVal(["temp", "temperature", "t"], lv);
+          const humStr = extractVal(["hum", "humidity", "h", "rh"], lv);
+          const litStr = extractVal(["light", "ldr", "lux", "l"], lv);
+
+          if (aqiStr || gasStr) {
+            let aqi = aqiStr ? parseInt(aqiStr) : rawToAQI(gasStr);
+            return {
+              aqi: Math.max(0, Math.min(500, aqi)),
+              temperature: tempStr ? safeTemp(tempStr) : sensorData.temperature,
+              humidity: humStr ? safeHum(humStr) : sensorData.humidity,
+              light: litStr ? safeLight(litStr) : sensorData.light,
+            };
+          }
+
+          // ── Format D: plain CSV (aqi,temp,hum,light) ─────────────────
+          const parts = raw.split(/[,\t;]/).map((s) => s.trim());
+          if (parts.length >= 4) {
+            const [p0, p1, p2, p3] = parts.map(parseFloat);
+            if (!isNaN(p0) && !isNaN(p1) && !isNaN(p2) && !isNaN(p3)) {
+              // Distinguish: if p0 > 100 and p1 < 100 it's raw,temp,hum,light
+              const aqi = p0 > 100 && p1 < 100 ? rawToAQI(p0) : Math.round(p0);
+              return {
+                aqi: Math.max(0, Math.min(500, aqi)),
+                temperature: safeTemp(p1),
+                humidity: safeHum(p2),
+                light: safeLight(p3),
+              };
+            }
+          }
+
+          return null; // unknown format
+        }
+
+        // ─── Serial read loop ────────────────────────────────────────────
+        async function _readLoop(port) {
+          let reader,
+            buffer = "";
+          try {
+            reader = port.readable.getReader();
+            sensorData.reader = reader;
+            const dec = new TextDecoder();
+            while (sensorData.connected) {
+              const { value, done } = await reader.read();
+              if (done || !sensorData.connected) break;
+              buffer += dec.decode(value, { stream: true });
+              let nl;
+              while ((nl = buffer.indexOf("\n")) !== -1) {
+                const line = buffer.slice(0, nl).trim();
+                buffer = buffer.slice(nl + 1);
+                if (!line) continue;
+
+                // Show raw line in debug box
+                const dbg = document.getElementById("rawDebugLine");
+                if (dbg) dbg.textContent = line.slice(0, 120);
+
+                const parsed = parseArduinoLine(line);
+                if (parsed) {
+                  Object.assign(sensorData, parsed);
+                  updateDashboard(parsed);
+                  // Update sync subtext with timestamp
+                  const st = document.getElementById("syncSubText");
+                  if (st)
+                    st.textContent =
+                      "Last update: " + new Date().toLocaleTimeString();
+                }
+              }
+            }
+          } catch (err) {
+            if (sensorData.connected) {
+              console.error("Serial read error:", err);
+              showNotification(
+                "Connection lost: " + (err.message || err.name),
+                "error",
+              );
+              await _hardDisconnect(true);
+            }
+          } finally {
+            try {
+              if (reader) reader.releaseLock();
+            } catch (_) {}
+          }
+        }
+
+        async function _hardDisconnect(restartDemo) {
+          sensorData.connected = false;
+          if (sensorData.reader) {
+            try {
+              await sensorData.reader.cancel();
+            } catch (_) {}
+            sensorData.reader = null;
+          }
+          await new Promise((r) => setTimeout(r, 150));
+          if (sensorData.port) {
+            try {
+              await sensorData.port.close();
+            } catch (_) {}
+            sensorData.port = null;
+            sensorData.selectedPort = null;
+          }
+          sensorData.isDemoMode = true;
+          if (restartDemo) {
+            startDemoMode();
+            updateConnectionUI();
+          }
+        }
+
+        async function connectToArduino(preSelectedPort) {
+          if (!("serial" in navigator)) {
+            showNotification(
+              "Web Serial not supported. Use Chrome or Edge.",
+              "error",
+            );
+            return;
+          }
+          let port = preSelectedPort || null;
+          if (!port) {
+            try {
+              port = await navigator.serial.requestPort();
+            } catch (err) {
+              if (
+                ["NotFoundError", "AbortError", "SecurityError"].includes(
+                  err.name,
+                )
+              ) {
+                showNotification(
+                  "No port chosen. Select your Arduino COM port.",
+                  "info",
+                );
+                return;
+              }
+              showNotification(
+                "Could not open port picker: " + err.message,
+                "error",
+              );
+              return;
+            }
+          }
+          await _hardDisconnect(false);
+          try {
+            await port.open({ baudRate: 9600 });
+          } catch (err) {
+            if (err.name === "InvalidStateError")
+              showNotification(
+                "Port in use! Close Arduino IDE Serial Monitor first.",
+                "error",
+              );
+            else
+              showNotification("Failed to open port: " + err.message, "error");
+            return;
+          }
+          sensorData.connected = true;
+          sensorData.isDemoMode = false;
+          sensorData.port = port;
+          sensorData.selectedPort = port;
+          if (demoInterval) {
+            clearInterval(demoInterval);
+            demoInterval = null;
+          }
+          updateConnectionUI();
+          showNotification(
+            "✅ Arduino connected! Receiving live data.",
+            "success",
+          );
+          closeConnectionModal();
+          _readLoop(port);
+        }
+
+        async function disconnectArduino() {
+          await _hardDisconnect(true);
+          try {
+            document.getElementById("portList").innerHTML = "";
+          } catch (_) {}
+          showNotification("Arduino disconnected. Demo mode active.", "info");
+        }
+
+        // ─── Modal helpers ───────────────────────────────────────────────
+        function openConnectionModal() {
+          const m = document.getElementById("connectionModal");
+          m.style.display = "flex";
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => m.classList.add("open")),
+          );
+          listAvailablePorts();
+        }
+        function closeConnectionModal() {
+          const m = document.getElementById("connectionModal");
+          m.classList.remove("open");
+          setTimeout(() => {
+            m.style.display = "none";
+            sensorData.selectedPort = null;
+            document.getElementById("portList").innerHTML = "";
+          }, 320);
+        }
+        async function listAvailablePorts() {
+          if (!("serial" in navigator)) {
+            document.getElementById("portList").innerHTML =
+              '<p style="color:#FF6B6B;">Web Serial API not supported.</p>';
+            return;
+          }
+          try {
+            const ports = await navigator.serial.getPorts();
+            const pl = document.getElementById("portList");
+            pl.innerHTML = "";
+            if (!ports.length) {
+              pl.innerHTML =
+                '<p style="color:var(--text-grey);">No permitted ports found. Click "Connect Device" to select one.</p>';
+              return;
+            }
+            ports.forEach((port, i) => {
+              const div = document.createElement("div");
+              div.className = "port-item";
+              div.innerHTML = `<div style="display:flex;align-items:center;gap:10px;"><i class="fas fa-microchip"></i><div><div style="font-weight:600;">Arduino Port ${i + 1}</div><div style="font-size:0.8rem;">Serial Device</div></div></div>`;
+              div.addEventListener("click", () => {
+                document
+                  .querySelectorAll(".port-item")
+                  .forEach((p) => p.classList.remove("selected"));
+                div.classList.add("selected");
+                sensorData.selectedPort = port;
+              });
+              pl.appendChild(div);
+            });
+          } catch {
+            document.getElementById("portList").innerHTML =
+              '<p style="color:#FF6B6B;">Error accessing serial ports.</p>';
+          }
+        }
+
+        // ─── Notification helper ─────────────────────────────────────────
+        function showNotification(msg, type) {
+          const c = document.getElementById("notificationContainer");
+          const n = document.createElement("div");
+          n.className = `notification ${type}`;
+          const icon =
+            type === "success"
+              ? "check-circle"
+              : type === "error"
+                ? "exclamation-circle"
+                : "info-circle";
+          n.innerHTML = `<i class="fas fa-${icon}"></i><span>${msg}</span>`;
+          c.appendChild(n);
+          requestAnimationFrame(() => n.classList.add("show"));
+          setTimeout(() => {
+            n.classList.remove("show");
+            setTimeout(() => n.remove(), 500);
+          }, 4500);
+        }
+
+        // ─── Button event listeners ──────────────────────────────────────
+        document
+          .getElementById("connectBtn")
+          .addEventListener("click", () =>
+            sensorData.connected ? disconnectArduino() : openConnectionModal(),
+          );
+        document
+          .getElementById("connectDeviceBtn")
+          .addEventListener("click", () => {
+            const pre = sensorData.selectedPort;
+            connectToArduino(pre && pre !== sensorData.port ? pre : null);
+          });
+        document
+          .getElementById("refreshPortsBtn")
+          .addEventListener("click", listAvailablePorts);
+        document
+          .getElementById("cancelModalBtn")
+          .addEventListener("click", closeConnectionModal);
+
+        // ─── Smooth scroll nav ───────────────────────────────────────────
+        document.querySelectorAll(".nav-link").forEach((link) =>
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const t = document.querySelector(link.getAttribute("href"));
+            if (t)
+              gsap.to(window, {
+                duration: 0.8,
+                scrollTo: { y: t, offsetY: 80 },
+                ease: "power2.inOut",
+              });
+          }),
+        );
+        document
+          .getElementById("exploreBtn")
+          ?.addEventListener("click", () =>
+            gsap.to(window, {
+              duration: 0.8,
+              scrollTo: { y: "#dashboard", offsetY: 80 },
+              ease: "power2.inOut",
+            }),
+          );
+        document
+          .getElementById("learnMoreBtn")
+          ?.addEventListener("click", () =>
+            gsap.to(window, {
+              duration: 0.8,
+              scrollTo: { y: "#hardware", offsetY: 80 },
+              ease: "power2.inOut",
+            }),
+          );
+
+        function updateActiveNav() {
+          const sections = document.querySelectorAll("section[id]");
+          const links = document.querySelectorAll(".nav-link");
+          let cur = "";
+          const sp = window.scrollY + 100;
+          sections.forEach((s) => {
+            if (sp >= s.offsetTop && sp < s.offsetTop + s.clientHeight)
+              cur = s.id;
+          });
+          links.forEach((l) => {
+            l.classList.remove("active");
+            if (l.getAttribute("href") === `#${cur}`) l.classList.add("active");
+          });
+        }
+        window.addEventListener("scroll", updateActiveNav);
+        updateActiveNav();
+
+        // ─── Charts ──────────────────────────────────────────────────────
+        function initCharts() {
+          if (chartInitialized) return;
+          chartInitialized = true;
+          const labels = Array.from({ length: 60 }, (_, i) => {
+            const t = new Date(Date.now() - (59 - i) * 2000);
+            let h = t.getHours(),
+              m = t.getMinutes().toString().padStart(2, "0"),
+              s = t.getSeconds().toString().padStart(2, "0");
+            const ap = h >= 12 ? "PM" : "AM";
+            h = h % 12 || 12;
+            return `${h}:${m}:${s} ${ap}`;
+          });
+          chartHistory.timestamps = [...labels];
+          chartHistory.aqi = new Array(60).fill(0);
+          chartHistory.temperature = new Array(60).fill(0);
+          chartHistory.humidity = new Array(60).fill(0);
+          chartHistory.light = new Array(60).fill(0);
+
+          const opts = {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false,
+            plugins: { legend: { labels: { color: "#FFF" } } },
+          };
+          const aqiCtx = document.getElementById("aqiChart")?.getContext("2d");
+          if (aqiCtx)
+            aqiChart = new Chart(aqiCtx, {
+              type: "line",
+              data: {
+                labels: chartHistory.timestamps,
+                datasets: [
+                  {
+                    label: "AQI",
+                    data: chartHistory.aqi,
+                    borderColor: "#9D4EDD",
+                    backgroundColor: "rgba(157,78,221,0.1)",
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                  },
+                ],
+              },
+              options: {
+                ...opts,
+                scales: {
+                  y: {
+                    min: 0,
+                    max: 500,
+                    grid: { color: "rgba(255,255,255,0.1)" },
+                    ticks: { color: "#AAA" },
+                  },
+                  x: {
+                    grid: { color: "rgba(255,255,255,0.1)" },
+                    ticks: { color: "#AAA", maxTicksLimit: 5 },
+                  },
+                },
+              },
+            });
+          const envCtx = document.getElementById("envChart")?.getContext("2d");
+          if (envCtx)
+            envChart = new Chart(envCtx, {
+              type: "line",
+              data: {
+                labels: chartHistory.timestamps,
+                datasets: [
+                  {
+                    label: "Temp (°C)",
+                    data: chartHistory.temperature,
+                    borderColor: "#FF6B6B",
+                    backgroundColor: "rgba(255,107,107,0.1)",
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    yAxisID: "y",
+                    pointRadius: 0,
+                  },
+                  {
+                    label: "Humidity (%)",
+                    data: chartHistory.humidity,
+                    borderColor: "#0066FF",
+                    backgroundColor: "rgba(0,102,255,0.1)",
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    yAxisID: "y1",
+                    pointRadius: 0,
+                  },
+                  {
+                    label: "Light (%)",
+                    data: chartHistory.light,
+                    borderColor: "#FFD166",
+                    backgroundColor: "rgba(255,209,102,0.1)",
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    yAxisID: "y1",
+                    pointRadius: 0,
+                  },
+                ],
+              },
+              options: {
+                ...opts,
+                scales: {
+                  y: {
+                    type: "linear",
+                    position: "left",
+                    min: 0,
+                    max: 60,
+                    grid: { color: "rgba(255,255,255,0.1)" },
+                    ticks: { color: "#AAA" },
+                  },
+                  y1: {
+                    type: "linear",
+                    position: "right",
+                    min: 0,
+                    max: 120,
+                    grid: { drawOnChartArea: false },
+                    ticks: { color: "#AAA" },
+                  },
+                  x: {
+                    grid: { color: "rgba(255,255,255,0.1)" },
+                    ticks: { color: "#AAA", maxTicksLimit: 5 },
+                  },
+                },
+              },
+            });
+        }
+
+        // ─── 3D tilt effect ──────────────────────────────────────────────
+        document
+          .querySelectorAll(
+            ".dashboard-card-3d,.aqi-level-3d,.hardware-item,.info-card",
+          )
+          .forEach((card) => {
+            card.addEventListener("mousemove", (e) => {
+              const r = card.getBoundingClientRect(),
+                cx = r.width / 2,
+                cy = r.height / 2;
+              const rx = (e.clientY - r.top - cy) / 20,
+                ry = (cx - (e.clientX - r.left)) / 20;
+              card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
+            });
+            card.addEventListener(
+              "mouseleave",
+              () => (card.style.transform = ""),
+            );
+          });
+
+        // ─── GSAP ────────────────────────────────────────────────────────
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+        gsap.from(".hero-title", {
+          duration: 1,
+          y: 50,
+          opacity: 0,
+          ease: "power3.out",
+        });
+        gsap.from(".hero-description", {
+          duration: 1,
+          y: 30,
+          opacity: 0,
+          delay: 0.2,
+          ease: "power3.out",
+        });
+        gsap.from(".hero-buttons", {
+          duration: 1,
+          y: 30,
+          opacity: 0,
+          delay: 0.4,
+          ease: "power3.out",
+        });
+        gsap.from(".sensor-display-3d", {
+          duration: 1,
+          x: 50,
+          opacity: 0,
+          delay: 0.6,
+          ease: "power3.out",
+        });
+
+        const aos2 = (sel, from, to = {}) =>
+          document.querySelectorAll(sel).forEach((el) => {
+            gsap.set(el, from);
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top 85%",
+              onEnter: () =>
+                gsap.to(el, {
+                  ...to,
+                  duration: 0.8,
+                  ease: "power2.out",
+                  overwrite: true,
+                }),
+              once: true,
+            });
+          });
+        aos2(".section-title", { y: 50, opacity: 0 }, { y: 0, opacity: 1 });
+        aos2(".section-subtitle", { y: 30, opacity: 0 }, { y: 0, opacity: 1 });
+        aos2(
+          ".hardware-item",
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1 },
+        );
+        aos2(
+          ".quiz-container",
+          { y: 50, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1 },
+        );
+        aos2(
+          ".chart-container-3d",
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1 },
+        );
+        aos2(".creator-credit", { y: 40, opacity: 0 }, { y: 0, opacity: 1 });
+        aos2(".school-info", { y: 40, opacity: 0 }, { y: 0, opacity: 1 });
+        aos2(".footer-bottom", { y: 30, opacity: 0 }, { y: 0, opacity: 1 });
+        document.querySelectorAll(".dashboard-card-3d").forEach((c, i) => {
+          gsap.set(c, { y: 60, opacity: 0 });
+          ScrollTrigger.create({
+            trigger: c,
+            start: "top 85%",
+            onEnter: () =>
+              gsap.to(c, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: "back.out(0.7)",
+              }),
+            once: true,
+          });
+        });
+        document.querySelectorAll(".aqi-level-3d").forEach((c, i) => {
+          gsap.set(c, { scale: 0.8, opacity: 0, rotationY: -15 });
+          ScrollTrigger.create({
+            trigger: c,
+            start: "top 85%",
+            onEnter: () =>
+              gsap.to(c, {
+                scale: 1,
+                opacity: 1,
+                rotationY: 0,
+                duration: 0.7,
+                delay: i * 0.08,
+                ease: "elastic.out(1,0.5)",
+              }),
+            once: true,
+          });
+        });
+        window.addEventListener("resize", () => ScrollTrigger.refresh());
+
+        // ─── City Grid ───────────────────────────────────────────────────
+        const cities = [
+          "Panna (M.P.)",
+          "Delhi",
+          "Mumbai",
+          "Kolkata",
+          "Chennai",
+          "Bangalore",
+          "Hyderabad",
+          "Ahmedabad",
+          "Pune",
+          "Jaipur",
+          "Lucknow",
+          "Kanpur",
+          "Nagpur",
+          "Indore",
+          "Bhopal",
+          "Patna",
+          "Vadodara",
+          "Ghaziabad",
+          "Ludhiana",
+          "Agra",
+          "Nashik",
+          "Faridabad",
+          "Meerut",
+          "Rajkot",
+          "Varanasi",
+          "Srinagar",
+          "Aurangabad",
+          "Dhanbad",
+          "Amritsar",
+          "Allahabad",
+        ];
+        function renderCityGrid() {
+          const g = document.getElementById("cityGrid");
+          if (!g) return;
+          g.innerHTML = cities
+            .map(
+              (city) =>
+                `<div class="city-card"><h3>${city}</h3><div class="zone-buttons"><button class="zone-btn residential" data-city="${city}" data-zone="residential">Residential</button><button class="zone-btn industrial" data-city="${city}" data-zone="industrial">Industrial</button><button class="zone-btn green" data-city="${city}" data-zone="green">Green Belt</button><button class="zone-btn traffic" data-city="${city}" data-zone="traffic">Traffic</button></div></div>`,
+            )
+            .join("");
+          document.querySelectorAll(".zone-btn").forEach((btn) =>
+            btn.addEventListener("click", () => {
+              const zoneAQI = {
+                residential: Math.floor(Math.random() * 50 + 30),
+                industrial: Math.floor(Math.random() * 150 + 150),
+                green: Math.floor(Math.random() * 30 + 10),
+                traffic: Math.floor(Math.random() * 130 + 100),
+              };
+              alert(
+                `${btn.dataset.city} - ${btn.dataset.zone} zone AQI: ${zoneAQI[btn.dataset.zone]}`,
+              );
+            }),
+          );
+        }
+
+        // ─── Simulation game ─────────────────────────────────────────────
+        function updateSim() {
+          const t = +document.getElementById("treesSlider").value,
+            f = +document.getElementById("factoriesSlider").value,
+            v = +document.getElementById("vehiclesSlider").value,
+            w = +document.getElementById("windSlider").value;
+          ["trees", "factories", "vehicles", "wind"].forEach(
+            (k, i) =>
+              (document.getElementById(k + "Value").innerText = [t, f, v, w][
+                i
+              ]),
+          );
+          const tf = (100 - t) / 100,
+            wf = (100 - w) / 100;
+          const co2 = Math.min(300, (f * 2 + v * 1.5) * tf * wf),
+            pm25 = Math.min(250, (f * 1.5 + v * 2) * tf * wf),
+            no2 = Math.min(200, (f + v * 2) * tf * wf),
+            so2 = Math.min(150, (f * 2 + v * 0.5) * tf * wf),
+            o3 = Math.min(120, (f * 0.8 + v * 1.2) * tf * (w / 100 + 0.5));
+          ["co2", "pm25", "no2", "so2", "o3"].forEach((k, i) => {
+            const h = [co2 / 3, pm25 / 2.5, no2 / 2, so2 / 1.5, o3 / 1.2][i];
+            document.getElementById(k + "Bar").style.height =
+              Math.max(10, h) + "%";
+            document.getElementById(k + "Label").innerText = Math.round(
+              [co2, pm25, no2, so2, o3][i],
+            );
+          });
+          const aqi = Math.round(
+            co2 * 0.2 + pm25 * 0.3 + no2 * 0.2 + so2 * 0.15 + o3 * 0.15,
+          );
+          document.getElementById("simulationAQI").innerText = aqi;
+          document.getElementById("aqiStatusText").innerText =
+            aqi <= 50
+              ? "Good"
+              : aqi <= 100
+                ? "Moderate"
+                : aqi <= 150
+                  ? "Unhealthy for Sensitive"
+                  : aqi <= 200
+                    ? "Unhealthy"
+                    : aqi <= 300
+                      ? "Very Unhealthy"
+                      : "Hazardous";
+        }
+        [
+          "treesSlider",
+          "factoriesSlider",
+          "vehiclesSlider",
+          "windSlider",
+        ].forEach((id) =>
+          document.getElementById(id)?.addEventListener("input", updateSim),
+        );
+
+        // ─── Spectra AI chat ─────────────────────────────────────────────
+        const aiR = {
+          aqi: "AQI ranges 0-500. Good:0-50, Moderate:51-100, Unhealthy Sensitive:101-150, Unhealthy:151-200, Very Unhealthy:201-300, Hazardous:301-500.",
+          pollution:
+            "Air pollution is contamination by harmful substances like PM2.5, NO2, SO2, CO, O3.",
+          pm25: "PM2.5 particles ≤2.5 micrometers enter the bloodstream causing respiratory & heart issues.",
+          health:
+            "Air pollution causes asthma, bronchitis, lung cancer, and cardiovascular diseases.",
+          trees:
+            "Trees absorb CO2, release oxygen, and trap particulate matter – natural purifiers!",
+          reduce:
+            "Use public transport, plant trees, save energy, avoid burning waste, use air purifiers.",
+          default:
+            "I'm Spectra AI! Ask about AQI, PM2.5, health effects, or how to reduce pollution.",
+        };
+        window.sendAIMessage = function () {
+          const inp = document.getElementById("aiInput");
+          const msg = inp.value.trim();
+          if (!msg) return;
+          const chat = document.getElementById("aiChat");
+          chat.innerHTML += `<div class="message user">${msg}</div>`;
+          let resp = aiR.default;
+          for (let k in aiR)
+            if (msg.toLowerCase().includes(k)) {
+              resp = aiR[k];
+              break;
+            }
+          setTimeout(() => {
+            chat.innerHTML += `<div class="message ai">${resp}</div>`;
+            chat.scrollTop = chat.scrollHeight;
+            if (window.voiceEnabled && window.speechSynthesis)
+              speechSynthesis.speak(new SpeechSynthesisUtterance(resp));
+          }, 300);
+          inp.value = "";
+          chat.scrollTop = chat.scrollHeight;
+        };
+        document
+          .getElementById("aiSendBtn")
+          .addEventListener("click", sendAIMessage);
+        let voiceEnabled = false;
+        document
+          .getElementById("voiceToggle")
+          ?.addEventListener("click", () => {
+            voiceEnabled = !voiceEnabled;
+            document
+              .getElementById("voiceToggle")
+              .querySelector("i")
+              .classList.toggle("fa-volume-mute");
+          });
+
+        // ─── Spectra AI Quiz ─────────────────────────────────────────────
+        const spectraQuiz = [
+          {
+            question: "What does AQI stand for?",
+            options: [
+              "Air Quality Index",
+              "Atmospheric Quantity Indicator",
+              "Air Quantity Index",
+              "Atmospheric Quality Index",
+            ],
+            correct: 0,
+          },
+          {
+            question:
+              "Which gas is the primary component of air pollution from vehicles?",
+            options: [
+              "Oxygen",
+              "Carbon Dioxide",
+              "Nitrogen",
+              "Carbon Monoxide",
+            ],
+            correct: 3,
+          },
+          {
+            question: "What is PM2.5?",
+            options: [
+              "A type of gas",
+              "Particulate matter less than 2.5 micrometers",
+              "A pollution index",
+              "A weather measurement",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Which AQI range is considered 'Good'?",
+            options: ["0-50", "51-100", "101-150", "151-200"],
+            correct: 0,
+          },
+          {
+            question: "What color represents 'Hazardous' air quality?",
+            options: ["Green", "Yellow", "Orange", "Maroon"],
+            correct: 3,
+          },
+          {
+            question: "Which of these is NOT a primary air pollutant?",
+            options: [
+              "Carbon Monoxide",
+              "Sulfur Dioxide",
+              "Ozone",
+              "Nitrogen Dioxide",
+            ],
+            correct: 2,
+          },
+          {
+            question: "What is the main source of SO2 pollution?",
+            options: [
+              "Vehicles",
+              "Power plants burning fossil fuels",
+              "Trees",
+              "Oceans",
+            ],
+            correct: 1,
+          },
+          {
+            question: "How do trees help reduce air pollution?",
+            options: [
+              "They release pollutants",
+              "They absorb CO2 and release oxygen",
+              "They increase temperature",
+              "They produce ozone",
+            ],
+            correct: 1,
+          },
+          {
+            question: "What is smog?",
+            options: [
+              "Clean air",
+              "A mixture of smoke and fog",
+              "Pure oxygen",
+              "Water vapor",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Which organ is most affected by air pollution?",
+            options: ["Heart", "Liver", "Lungs", "Kidneys"],
+            correct: 2,
+          },
+          {
+            question:
+              "What time of day typically has the worst air quality in cities?",
+            options: [
+              "Early morning",
+              "Noon",
+              "Rush hour (morning/evening)",
+              "Midnight",
+            ],
+            correct: 2,
+          },
+          {
+            question: "Which of these can help reduce indoor air pollution?",
+            options: [
+              "Smoking indoors",
+              "Using air purifiers",
+              "Keeping windows closed always",
+              "Using chemical sprays",
+            ],
+            correct: 1,
+          },
+          {
+            question: "What is the greenhouse effect?",
+            options: [
+              "Cooling of Earth",
+              "Trapping of heat by atmospheric gases",
+              "Production of oxygen",
+              "Reduction in pollution",
+            ],
+            correct: 1,
+          },
+          {
+            question: "Which country has the most polluted cities?",
+            options: ["USA", "China", "India", "Russia"],
+            correct: 2,
+          },
+          {
+            question: "What is the best way to reduce vehicular pollution?",
+            options: [
+              "Drive more",
+              "Use public transport or EVs",
+              "Use older vehicles",
+              "Increase speed",
+            ],
+            correct: 1,
+          },
+        ];
+        let sqCur = 0,
+          sqAns = new Array(15).fill(-1),
+          sqDone = false;
+        window.openSpectraQuiz = () => {
+          document.getElementById("spectraQuizModal").style.display = "flex";
+          sqCur = 0;
+          sqDone = false;
+          sqAns.fill(-1);
+          showSQ();
+        };
+        window.closeSpectraQuiz = () =>
+          (document.getElementById("spectraQuizModal").style.display = "none");
+        function showSQ() {
+          if (sqDone) {
+            let c = 0;
+            sqAns.forEach((a, i) => {
+              if (a === spectraQuiz[i].correct) c++;
+            });
+            document.getElementById("spectraQuizProgress").innerText =
+              "Results";
+            document.getElementById("spectraQuizQuestion").innerHTML =
+              `<div style="text-align:center"><h2>Quiz Complete!</h2><div style="font-family:Orbitron;font-size:3rem;margin:1rem;">${c}/15</div><p>Score: ${Math.round((c / 15) * 100)}%</p></div><button class="quiz-btn-small" onclick="closeSpectraQuiz()">Close</button>`;
+            document.getElementById("spectraQuizOptions").innerHTML = "";
+            document.querySelector(
+              "#spectraQuizModal .quiz-nav",
+            ).style.display = "none";
+            return;
+          }
+          const q = spectraQuiz[sqCur];
+          document.getElementById("spectraQuizProgress").innerText =
+            `Question ${sqCur + 1} of 15`;
+          document.getElementById("spectraQuizQuestion").innerText = q.question;
+          document.getElementById("spectraQuizOptions").innerHTML = q.options
+            .map(
+              (o, i) =>
+                `<div class="quiz-option ${sqAns[sqCur] === i ? "selected" : ""}" data-i="${i}">${o}</div>`,
+            )
+            .join("");
+          document
+            .querySelectorAll("#spectraQuizOptions .quiz-option")
+            .forEach((el) =>
+              el.addEventListener("click", (e) => {
+                sqAns[sqCur] = +e.currentTarget.dataset.i;
+                showSQ();
+              }),
+            );
+        }
+        window.spectraNext = () => {
+          if (sqCur < 14) sqCur++;
+          else sqDone = true;
+          showSQ();
+        };
+        window.spectraPrev = () => {
+          if (sqCur > 0) sqCur--;
+          showSQ();
+        };
+        document
+          .getElementById("openSpectraQuizBtn")
+          .addEventListener("click", openSpectraQuiz);
+        document
+          .getElementById("spectraPrevBtn")
+          .addEventListener("click", spectraPrev);
+        document
+          .getElementById("spectraNextBtn")
+          .addEventListener("click", spectraNext);
+        document
+          .getElementById("closeSpectraQuizBtn")
+          .addEventListener("click", closeSpectraQuiz);
+
+        // ─── Quiz (main) ─────────────────────────────────────────────────
+        const quizQ = [
+          {
+            question: "What does AQI stand for?",
+            options: [
+              "Air Quality Index",
+              "Atmospheric Quantity Indicator",
+              "Air Quality Indicator",
+              "Atmospheric Quality Index",
+            ],
+            correct: 0,
+          },
+          {
+            question: "Which sensor detects harmful gases in this project?",
+            options: ["DHT11", "MQ135", "LDR", "Ultrasonic"],
+            correct: 1,
+          },
+          {
+            question: "What AQI range is considered 'Good'?",
+            options: ["0-50", "51-100", "101-150", "151-200"],
+            correct: 0,
+          },
+          {
+            question: "Which microcontroller is used?",
+            options: ["Raspberry Pi", "Arduino UNO", "ESP32", "NodeMCU"],
+            correct: 1,
+          },
+          {
+            question: "PM2.5 refers to particles smaller than?",
+            options: ["2.5 microns", "2.5 mm", "25 microns", "0.25 microns"],
+            correct: 0,
+          },
+          {
+            question: "Which gas is NOT typically monitored for AQI?",
+            options: ["CO2", "Ozone", "SO2", "NO2"],
+            correct: 0,
+          },
+          {
+            question: "Health advisory for AQI 150 is?",
+            options: [
+              "Unhealthy for Sensitive",
+              "Good",
+              "Moderate",
+              "Hazardous",
+            ],
+            correct: 0,
+          },
+        ];
+        let qCur = 0,
+          qScore = 0,
+          qAnswered = false;
+        function loadQ() {
+          const q = quizQ[qCur];
+          document.getElementById("quizQuestion").innerText = q.question;
+          const od = document.getElementById("quizOptions");
+          od.innerHTML = "";
+          q.options.forEach((o, i) => {
+            const d = document.createElement("div");
+            d.className = "quiz-option";
+            d.innerText = `${String.fromCharCode(65 + i)}) ${o}`;
+            d.dataset.idx = i;
+            d.addEventListener("click", function () {
+              if (qAnswered) return;
+              const sel = +this.dataset.idx,
+                ok = sel === q.correct;
+              if (ok) qScore++;
+              document.getElementById("quizResult").innerHTML = ok
+                ? "✅ Correct!"
+                : "❌ Incorrect. Answer: " + q.options[q.correct];
+              document.getElementById("quizScore").innerText =
+                `Score: ${qScore}/${quizQ.length}`;
+              qAnswered = true;
+              document.querySelectorAll(".quiz-option").forEach((el, j) => {
+                el.style.background =
+                  j === q.correct
+                    ? "rgba(0,255,100,0.3)"
+                    : "rgba(255,50,50,0.2)";
+              });
+              if (qCur === quizQ.length - 1) showFinalQ();
+            });
+            od.appendChild(d);
+          });
+          document.getElementById("quizResult").innerHTML = "";
+          document.getElementById("quizRemark").innerHTML = "";
+          document.getElementById("retestContainer").innerHTML = "";
+          qAnswered = false;
+        }
+        function showFinalQ() {
+          const rm = document.getElementById("quizRemark"),
+            rc = document.getElementById("retestContainer");
+          rm.innerHTML =
+            qScore === quizQ.length
+              ? "🏆 Perfect! You are an air quality expert!"
+              : qScore >= 5
+                ? "🌟 Great job!"
+                : qScore >= 3
+                  ? "📚 Good effort! Keep learning."
+                  : "💡 Try again to improve!";
+          const btn = document.createElement("button");
+          btn.className = "retest-btn";
+          btn.innerHTML = '<i class="fas fa-redo-alt"></i> Retest';
+          btn.onclick = () => {
+            qScore = 0;
+            qCur = 0;
+            document.getElementById("quizScore").innerText =
+              `Score: 0/${quizQ.length}`;
+            loadQ();
+          };
+          rc.appendChild(btn);
+        }
+        document.getElementById("quizScore").innerText =
+          `Score: 0/${quizQ.length}`;
+        document
+          .getElementById("nextQuestionBtn")
+          ?.addEventListener("click", () => {
+            if (qCur < quizQ.length - 1) {
+              qCur++;
+              loadQ();
+            } else if (!document.getElementById("quizRemark").innerHTML)
+              showFinalQ();
+          });
+        loadQ();
+
+        // ─── Personal dashboard ───────────────────────────────────────────
+        window.submitPersonalAQI = function () {
+          const aqi = parseInt(document.getElementById("userAQI").value),
+            loc = document.getElementById("userLocation").value;
+          if (isNaN(aqi) || aqi < 0 || aqi > 500) {
+            alert("Enter valid AQI 0-500");
+            return;
+          }
+          document.getElementById("pred1h").innerHTML = Math.min(
+            500,
+            Math.max(0, aqi + Math.floor(Math.random() * 30 - 15)),
+          );
+          document.getElementById("pred1d").innerHTML = Math.min(
+            500,
+            Math.max(0, aqi + Math.floor(Math.random() * 50 - 25)),
+          );
+          document.getElementById("pred1w").innerHTML = Math.min(
+            500,
+            Math.max(0, aqi + Math.floor(Math.random() * 80 - 40)),
+          );
+          const cls =
+            aqi <= 50 ? "good" : aqi <= 100 ? "moderate" : "unhealthy";
+          const msg =
+            aqi <= 50
+              ? "✅ Air quality good. Enjoy outdoor activities."
+              : aqi <= 100
+                ? "⚠️ Moderate. Sensitive groups limit exertion."
+                : "🚨 Unhealthy! Avoid outdoors, use masks, keep windows closed.";
+          document.getElementById("healthSuggestions").innerHTML =
+            `<div class="warning-box ${cls}"><h4>${loc ? loc + " " : ""}AQI ${aqi}</h4><p>${msg}</p></div>`;
+        };
+        document
+          .getElementById("submitAQIBtn")
+          ?.addEventListener("click", window.submitPersonalAQI);
+        const mt = document.getElementById("measureTime");
+        if (mt) mt.value = new Date().toISOString().slice(0, 16);
+
+        // ─── Init everything ──────────────────────────────────────────────
+        renderCityGrid();
+        updateSim();
+        initCharts();
+        startDemoMode();
+        updateConnectionUI();
+      })();
+    </script>
+  </body>
+</html>
